@@ -4,13 +4,21 @@ var ctxBg = canvasBg.getContext('2d');
 var clearCanvasBtn = document.getElementById('clearCanvasBtn');
 clearCanvasBtn.addEventListener('click', clearCanvas, false);
 
-var drawSquareBtn = document.getElementById('drawSquareBtn');
-drawSquareBtn.addEventListener('click',drawSquare,false);
+var gameWidth = canvasBg.width;
+var gameHeight = canvasBg.height;
 
+// loading images
+var imgSprite = new Image();
+imgSprite.src = 'img/sprite.png';
+imgSprite.addEventListener('load',drawBg, false);
 
-function drawSquare() {
-    ctxBg.fillStyle = '#505050';
-    ctxBg.fillRect(20,100,600,600);
+function drawBg(){
+    var srcX = 0;
+    var srcY = 0;
+    var drawX = 0;
+    var drawY = 0;
+    ctxBg.drawImage(imgSprite, srcX, srcY, gameWidth, gameHeight, drawX, drawY, gameWidth, gameHeight);
+
 }
 
 function clearCanvas() {
