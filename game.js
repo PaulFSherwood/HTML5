@@ -20,6 +20,8 @@ function init(){
     drawBg();
     startDrawing();
     jet1 = new Jet();
+    document.addEventListener('keydown', checkKeyDown, false);
+    document.addEventListener('keyup', checkKeyUp, false);
 }
 
 function draw(){
@@ -68,4 +70,36 @@ function clearCtxBg() {
 
 function clearCtxJet() {
 	ctxJet.clearRect(0, 0, gameWidth, gameHeight);
+}
+
+function checkKeyDown(e){
+    var keyID = (e.keyCode) ? e.keyCode : e.which;
+    if (keyID == 38 || keyID == 87) { // 38 is up arrow, and 87 is 'w' key
+        e.preventDefault();
+    }
+    if (keyID == 39 || keyID == 68) { // 39 is down arrow, and 68 is 'd' key
+        e.preventDefault();
+    }
+    if (keyID == 40 || keyID == 83) { // 40 is right arrow, and 87 is 's' key
+        e.preventDefault();
+    }
+    if (keyID == 37 || keyID == 65) { // 41 is left arrow, and 65 is 'a' key
+        e.preventDefault();
+    }
+}
+
+function checkKeyUp(e){
+    var keyID = (e.keyCode) ? e.keyCode : e.which;
+    if (keyID == 38 || keyID == 87) { // 38 is up arrow, and 87 is 'w' key
+        e.preventDefault();
+    }
+    if (keyID == 39 || keyID == 68) { // 39 is right arrow, and 68 is 'd' key
+        e.preventDefault();
+    }
+    if (keyID == 40 || keyID == 83) { // 40 is right arrow, and 87 is 's' key
+        e.preventDefault();
+    }
+    if (keyID == 37 || keyID == 65) { // 41 is left arrow, and 65 is 'a' key
+        e.preventDefault();
+    }
 }
