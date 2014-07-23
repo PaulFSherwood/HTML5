@@ -16,6 +16,8 @@ var imgSprite = new Image();
 imgSprite.src = 'img/sprite.png';
 imgSprite.addEventListener('load',init, false);
 
+
+// main functions
 function init(){
     drawBg();
     startDrawing();
@@ -38,24 +40,6 @@ function stopDrawing(){
 	clearInterval(drawInterval);
 }
 
-function Jet(){
-    this.srcX   =   0;
-    this.srcY   = 601;
-    this.drawX  = 150;
-    this.drawY  = 250;
-    this.width  = 100;
-    this.height =  40;
-
-}
-
-Jet.prototype.draw = function() {
-    clearCtxJet();
-    ctxJet.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
-};
-
-function drawJet(){
-}
-
 function drawBg(){
     var srcX = 0;
     var srcY = 0;
@@ -67,39 +51,88 @@ function drawBg(){
 function clearCtxBg() {
     ctxBg.clearRect(0,0,800,500);
 }
+// end of main functions
 
-function clearCtxJet() {
-	ctxJet.clearRect(0, 0, gameWidth, gameHeight);
+
+// Jet functions
+function Jet(){
+    this.srcX   =   0;
+    this.srcY   = 601;
+    this.drawX  = 150;
+    this.drawY  = 250;
+    this.width  = 100;
+    this.height =  40;
+    this.speed  =   2;
+    this.isUpKey = false;
+    this.isRightKey = false;
+    this.isDownKey = false;
+    this.isLeftKey = false;
 }
 
+Jet.prototype.draw = function() {
+    clearCtxJet();
+    this.checkKeys();
+    ctxJet.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
+};
+
+Jet.prototype.checkKeys = function () {
+    if (this.isUpKey) {
+        this.drawY -= this.speed;
+    }
+    if (this.isRightKey) {
+        this.drawX += this.speed;
+    }
+    if (this.isDownKey) {
+        this.drawY += this.speed;
+    }
+    if (this.isLeftKey) {
+        this.drawX -= this.speed;
+    }
+}
+
+function clearCtxJet() {
+    ctxJet.clearRect(0, 0, gameWidth, gameHeight);
+}
+// end of Jet functions
+
+// event functions
 function checkKeyDown(e){
-    var keyID = (e.keyCode) ? e.keyCode : e.which;
+    var keyID = e.keyCode || e.which;
     if (keyID == 38 || keyID == 87) { // 38 is up arrow, and 87 is 'w' key
+        jet1.isUpKey = true;
         e.preventDefault();
     }
-    if (keyID == 39 || keyID == 68) { // 39 is down arrow, and 68 is 'd' key
+    if (keyID == 39 || keyID == 68) { // 39 is right arrow, and 68 is 'd' key
+        jet1.isRightKey = true;
         e.preventDefault();
     }
-    if (keyID == 40 || keyID == 83) { // 40 is right arrow, and 87 is 's' key
+    if (keyID == 40 || keyID == 83) { // 40 is down arrow, and 87 is 's' key
+        jet1.isDownKey = true;
         e.preventDefault();
     }
     if (keyID == 37 || keyID == 65) { // 41 is left arrow, and 65 is 'a' key
+        jet1.isLeftKey = true;
         e.preventDefault();
     }
 }
 
 function checkKeyUp(e){
-    var keyID = (e.keyCode) ? e.keyCode : e.which;
+    var keyID = e.keyCode || e.which;
     if (keyID == 38 || keyID == 87) { // 38 is up arrow, and 87 is 'w' key
+        jet1.isUpKey = false;
         e.preventDefault();
     }
     if (keyID == 39 || keyID == 68) { // 39 is right arrow, and 68 is 'd' key
+        jet1.isRightKey = false;
         e.preventDefault();
     }
     if (keyID == 40 || keyID == 83) { // 40 is right arrow, and 87 is 's' key
+        jet1.isDownKey = false;
         e.preventDefault();
     }
     if (keyID == 37 || keyID == 65) { // 41 is left arrow, and 65 is 'a' key
+        jet1.isLeftKey = false;
         e.preventDefault();
     }
 }
+// end of event functions
