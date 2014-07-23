@@ -5,6 +5,7 @@ var ctxBg = canvasBg.getContext('2d');
 var canvasJet = document.getElementById('canvasJet');
 var ctxJet = canvasJet.getContext('2d');
 
+var jet1;
 var gameWidth = canvasBg.width;
 var gameHeight = canvasBg.height;
 var fps = 10;
@@ -18,10 +19,11 @@ imgSprite.addEventListener('load',init, false);
 function init(){
     drawBg();
     startDrawing();
+    jet1 = new Jet();
 }
 
 function draw(){
-    drawJet();
+    jet1.draw();
 }
 
 function startDrawing(){
