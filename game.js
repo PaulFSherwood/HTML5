@@ -8,8 +8,7 @@ var ctxJet = canvasJet.getContext('2d');
 var canvasEnemy = document.getElementById('canvasEnemy');
 var ctxEnemy = canvasEnemy.getContext('2d');
 
-var jet1;
-var enemy1;
+var jet1 = new Jet();
 var gameWidth = canvasBg.width;
 var gameHeight = canvasBg.height;
 var isPlaying = false;
@@ -21,7 +20,9 @@ var requestAnimFrame = window.requestAnimationFrame ||
 
 var spawnInterval;
 var totalEnemies = 0;
-var enemys = [];
+var enemies = [];
+var spawnRate = 2000;
+var spawnAmount = 2;
 
 // loading images
 var imgSprite = new Image();
@@ -30,18 +31,39 @@ imgSprite.addEventListener('load',init, false);
 
 // main functions
 function init(){
-    jet1 = new Jet();
-    enemy1 = new Enemy();
     drawBg();
     startLoop();
     document.addEventListener('keydown', checkKeyDown, false);
     document.addEventListener('keyup', checkKeyUp, false);
 }
 
+function spawnEnemy(n) {
+    for (var i = 0; i < n; i++) {
+        enemies[totalEnemies] = new Enemy();
+        totalEnemies++;
+    }
+}
+
+function drawAllEnemies() {
+    clearCtxEnemy();
+    for (var i = 0; i < enemies.length; i++) {
+        enemies[i].draw();
+    }
+}
+
+function startSpawningEnemies(){
+    stopSpawningEnemies();
+    spawnInterval = setInterval(function() {spawnEnemy(spawnAmount);}, spawnRate);
+}
+
+function stopSpawningEnemies(){
+    clearInterval(spawnInterval);
+}
+
 function loop(){
     if (isPlaying) {
         jet1.draw();
-        enemy1.draw();
+        drawAllEnemies();
         requestAnimFrame(loop);
     }
 }
@@ -49,10 +71,12 @@ function loop(){
 function startLoop() {
     isPlaying = true;
     loop();
+    startSpawningEnemies();
 }
 
 function stopLoop() {
     isPlaying = false;
+    stopSpawningEnemies();
 }
 
 function drawBg(){
@@ -125,7 +149,6 @@ function Enemy(){
 }
 
 Enemy.prototype.draw = function() {
-    clearCtxEnemy();
     this.drawX -= this.speed / 2;
     ctxEnemy.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
 }
