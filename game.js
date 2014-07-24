@@ -12,8 +12,16 @@ var jet1;
 var enemy1;
 var gameWidth = canvasBg.width;
 var gameHeight = canvasBg.height;
-var fps = 10;
-var drawInterval;
+var isPlaying = false;
+var requestAnimFrame = window.requestAnimationFrame || 
+                       window.webkitRequestAnimantionFrame ||
+                       window.mozRequestAnimationFrame ||
+                       window.msRequestAnimationFrame ||
+                       window.oRequestAnimationFrame;
+
+var spawnInterval;
+var totalEnemies = 0;
+var enemys = [];
 
 // loading images
 var imgSprite = new Image();
@@ -25,24 +33,26 @@ function init(){
     jet1 = new Jet();
     enemy1 = new Enemy();
     drawBg();
-    startDrawing();
+    startLoop();
     document.addEventListener('keydown', checkKeyDown, false);
     document.addEventListener('keyup', checkKeyUp, false);
 }
 
-function draw(){
-    jet1.draw();
-    enemy1.draw();
+function loop(){
+    if (isPlaying) {
+        jet1.draw();
+        enemy1.draw();
+        requestAnimFrame(loop);
+    }
 }
 
-function startDrawing(){
-	stopDrawing();
-    drawInterval = setInterval(draw, fps);
+function startLoop() {
+    isPlaying = true;
+    loop();
 }
 
-function stopDrawing(){
-	// reset our interval
-	clearInterval(drawInterval);
+function stopLoop() {
+    isPlaying = false;
 }
 
 function drawBg(){
@@ -65,7 +75,7 @@ function Jet(){
     this.srcY   = 601;
     this.width  = 100;
     this.height =  40;
-    this.speed  =   2;
+    this.speed  =   6;
     this.drawX  = 150;
     this.drawY  = 200;
     this.isUpKey = false;
@@ -166,6 +176,3 @@ function checkKeyUp(e){
     }
 }
 // end of event functions
-
-
-
