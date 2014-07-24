@@ -4,8 +4,12 @@ var ctxBg = canvasBg.getContext('2d');
 // jet
 var canvasJet = document.getElementById('canvasJet');
 var ctxJet = canvasJet.getContext('2d');
+// enemy
+var canvasEnemy = document.getElementById('canvasEnemy');
+var ctxEnemy = canvasEnemy.getContext('2d');
 
 var jet1;
+var enemy1;
 var gameWidth = canvasBg.width;
 var gameHeight = canvasBg.height;
 var fps = 10;
@@ -16,18 +20,19 @@ var imgSprite = new Image();
 imgSprite.src = 'img/sprite.png';
 imgSprite.addEventListener('load',init, false);
 
-
 // main functions
 function init(){
+    jet1 = new Jet();
+    enemy1 = new Enemy();
     drawBg();
     startDrawing();
-    jet1 = new Jet();
     document.addEventListener('keydown', checkKeyDown, false);
     document.addEventListener('keyup', checkKeyUp, false);
 }
 
 function draw(){
     jet1.draw();
+    enemy1.draw();
 }
 
 function startDrawing(){
@@ -49,7 +54,7 @@ function drawBg(){
 }
 
 function clearCtxBg() {
-    ctxBg.clearRect(0,0,800,500);
+    ctxBg.clearRect(0, 0, gameWidth, gameHeight);
 }
 // end of main functions
 
@@ -58,11 +63,11 @@ function clearCtxBg() {
 function Jet(){
     this.srcX   =   0;
     this.srcY   = 601;
-    this.drawX  = 150;
-    this.drawY  = 250;
     this.width  = 100;
     this.height =  40;
     this.speed  =   2;
+    this.drawX  = 150;
+    this.drawY  = 200;
     this.isUpKey = false;
     this.isRightKey = false;
     this.isDownKey = false;
@@ -71,11 +76,15 @@ function Jet(){
 
 Jet.prototype.draw = function() {
     clearCtxJet();
-    this.checkKeys();
+    this.checkDirection();
     ctxJet.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
 };
 
-Jet.prototype.checkKeys = function () {
+function clearCtxJet() {
+    ctxJet.clearRect(0, 0, gameWidth, gameHeight);
+}
+
+Jet.prototype.checkDirection = function () {
     if (this.isUpKey) {
         this.drawY -= this.speed;
     }
@@ -89,11 +98,31 @@ Jet.prototype.checkKeys = function () {
         this.drawX -= this.speed;
     }
 }
-
-function clearCtxJet() {
-    ctxJet.clearRect(0, 0, gameWidth, gameHeight);
-}
 // end of Jet functions
+
+// enemy functions
+function Enemy(){
+    this.srcX   =   0;
+    this.srcY   = 642;
+    this.width  = 100;
+    this.height =  40;
+    this.speed  =   2;
+    this.drawX  = 250;
+    this.drawY  = 300;
+    this.isUpKey = false;
+    this.isRightKey = false;
+    this.isDownKey = false;
+}
+
+Enemy.prototype.draw = function() {
+    clearCtxEnemy();
+    ctxEnemy.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
+}
+
+function clearCtxEnemy() {
+    ctxEnemy.clearRect(0, 0, gameWidth, gameHeight);
+}
+// enemy functions
 
 // event functions
 function checkKeyDown(e){
@@ -136,3 +165,6 @@ function checkKeyUp(e){
     }
 }
 // end of event functions
+
+
+
