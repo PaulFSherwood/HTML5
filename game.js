@@ -107,8 +107,8 @@ function Enemy(){
     this.width  = 100;
     this.height =  40;
     this.speed  =   2;
-    this.drawX  = 250;
-    this.drawY  = 300;
+    this.drawX  = Math.floor((Math.random() * 1000 ) + gameWidth);
+    this.drawY  = Math.floor(Math.random() * 400);
     this.isUpKey = false;
     this.isRightKey = false;
     this.isDownKey = false;
@@ -116,6 +116,7 @@ function Enemy(){
 
 Enemy.prototype.draw = function() {
     clearCtxEnemy();
+    this.drawX -= this.speed / 2;
     ctxEnemy.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
 }
 
