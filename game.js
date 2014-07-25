@@ -151,6 +151,18 @@ function Enemy(){
 Enemy.prototype.draw = function() {
     this.drawX -= this.speed / 2;
     ctxEnemy.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
+    this.checkEscaped();
+}
+
+Enemy.prototype.checkEscaped = function() {
+    if (this.drawX + this.width <= 0) {
+        this.destroyEnemy();
+    }
+}
+
+Enemy.prototype.destroyEnemy = function() {
+    enemies.splice(enemies.indexOf(this), 1);
+    totalEnemies--;
 }
 
 function clearCtxEnemy() {
