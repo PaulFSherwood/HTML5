@@ -18,11 +18,8 @@ var requestAnimFrame = window.requestAnimationFrame ||
                        window.msRequestAnimationFrame ||
                        window.oRequestAnimationFrame;
 
-var spawnInterval;
-var totalEnemies = 0;
 var enemies = [];
-var spawnRate = 2000;
-var spawnAmount = 2;
+var spawnAmount = 5;
 
 // loading images
 var imgSprite = new Image();
@@ -31,16 +28,16 @@ imgSprite.addEventListener('load',init, false);
 
 // main functions
 function init(){
+    spawnEnemy(spawnAmount);
     drawBg();
     startLoop();
     document.addEventListener('keydown', checkKeyDown, false);
     document.addEventListener('keyup', checkKeyUp, false);
 }
 
-function spawnEnemy(n) {
-    for (var i = 0; i < n; i++) {
-        enemies[totalEnemies] = new Enemy();
-        totalEnemies++;
+function spawnEnemy(number) {
+    for (var i = 0; i < number; i++) {
+        enemies[enemies.length] = new Enemy();
     }
 }
 
@@ -49,15 +46,6 @@ function drawAllEnemies() {
     for (var i = 0; i < enemies.length; i++) {
         enemies[i].draw();
     }
-}
-
-function startSpawningEnemies(){
-    stopSpawningEnemies();
-    spawnInterval = setInterval(function() {spawnEnemy(spawnAmount);}, spawnRate);
-}
-
-function stopSpawningEnemies(){
-    clearInterval(spawnInterval);
 }
 
 function loop(){
@@ -71,12 +59,10 @@ function loop(){
 function startLoop() {
     isPlaying = true;
     loop();
-    startSpawningEnemies();
 }
 
 function stopLoop() {
     isPlaying = false;
-    stopSpawningEnemies();
 }
 
 function drawBg(){
@@ -156,13 +142,13 @@ Enemy.prototype.draw = function() {
 
 Enemy.prototype.checkEscaped = function() {
     if (this.drawX + this.width <= 0) {
-        this.destroyEnemy();
+        this.recycleEnemy();
     }
 }
 
-Enemy.prototype.destroyEnemy = function() {
-    enemies.splice(enemies.indexOf(this), 1);
-    totalEnemies--;
+Enemy.prototype.recycleEnemy = function() {
+    this.drawX  = Math.floor((Math.random() * 1000 ) + gameWidth);
+    this.drawY  = Math.floor(Math.random() * 400);
 }
 
 function clearCtxEnemy() {
