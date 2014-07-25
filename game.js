@@ -19,7 +19,6 @@ var requestAnimFrame = window.requestAnimationFrame ||
                        window.oRequestAnimationFrame;
 
 var enemies = [];
-var spawnAmount = 5;
 
 // loading images
 var imgSprite = new Image();
@@ -28,7 +27,7 @@ imgSprite.addEventListener('load',init, false);
 
 // main functions
 function init(){
-    spawnEnemy(spawnAmount);
+    spawnEnemy(5);
     drawBg();
     startLoop();
     document.addEventListener('keydown', checkKeyDown, false);
@@ -126,7 +125,7 @@ function Enemy(){
     this.srcY   = 642;
     this.width  = 100;
     this.height =  40;
-    this.speed  =   2;
+    this.speed  =   6;
     this.drawX  = Math.floor((Math.random() * 1000 ) + gameWidth);
     this.drawY  = Math.floor(Math.random() * 400);
     this.isUpKey = false;
