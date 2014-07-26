@@ -91,22 +91,36 @@ function main() {
 
     var img = new Image();
     img.onload = function() {
-        console.log("test");
+        initSprites(this);
+        ctx.fillStyle = s_bg.color; // fill in the background color
+        run();
     }
     img.src = "res/sheet.png";
 
 }
 
 function run() {
-
+    var loop = function() {
+        update();
+        render();
+        window.requestAnimationFrame(loop, canvas);
+    }
+    window.requestAnimationFrame(loop, canvas);
 }
 
 function update(){
+    frames++;
 
+    fgpos = (fgpos - 2) % 14;
 }
 
 function render() {
+    ctx.fillRect(0, 0, width, height);  // fill in the background color
+    s_bg.draw(ctx, 0, height - s_bg.height ); // initial picture
+    s_bg.draw(ctx, s_bg.width, height - s_bg.height ); // fill in the gap
 
+    s_fg.draw(ctx, fgpos, height - s_fg.height); // forground picture
+    s_fg.draw(ctx, fgpos+s_fg.width, height - s_fg.height); // fill in the rest of the forground
 }
 
 main();
