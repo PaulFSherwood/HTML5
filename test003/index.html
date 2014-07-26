@@ -60,7 +60,7 @@ okbtn,
   */
 bird = {
     x: 80,
-    y: 0,
+    y: 100,
     frame: 0,
     animation: [0, 1, 2, 1],
     rotation: 0,
@@ -69,7 +69,7 @@ bird = {
 
     jump: function() {
         this.velocity = -this._jump;
-    }
+    },
 
     update: function() {
     
@@ -90,7 +90,7 @@ bird = {
 pipes = {
     update: function() {
 
-    }
+    },
 
     draw: function(ctx) {
 
@@ -148,10 +148,11 @@ function update(){
 
 function render() {
     ctx.fillRect(0, 0, width, height);  // fill in the background color
+
     s_bg.draw(ctx, 0, height - s_bg.height ); // initial picture
     s_bg.draw(ctx, s_bg.width, height - s_bg.height ); // fill in the gap
 
-    s_bird.draw(ctx);
+    bird.draw(ctx);
 
     s_fg.draw(ctx, fgpos, height - s_fg.height); // forground picture
     s_fg.draw(ctx, fgpos+s_fg.width, height - s_fg.height); // fill in the rest of the forground
