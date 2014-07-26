@@ -72,7 +72,9 @@ bird = {
     },
 
     update: function() {
-    
+        var n = currentstate === states.Splash ? 10 : 5;
+        this.frame += frames % n === 0 ? 1 : 0;
+        this.frame %= this.animation.length;
     },
 
     draw: function(ctx) {
@@ -118,6 +120,8 @@ function main() {
 	}
 	ctx = canvas.getContext("2d");
 
+    currentstate = states.Splash;
+        
     // append canvas to document
 	document.body.appendChild(canvas);
 
@@ -144,6 +148,9 @@ function update(){
     frames++;
 
     fgpos = (fgpos - 2) % 14;
+
+    bird.update();
+    pipes.update();
 }
 
 function render() {
@@ -153,6 +160,7 @@ function render() {
     s_bg.draw(ctx, s_bg.width, height - s_bg.height ); // fill in the gap
 
     bird.draw(ctx);
+    pipes.draw(ctx);
 
     s_fg.draw(ctx, fgpos, height - s_fg.height); // forground picture
     s_fg.draw(ctx, fgpos+s_fg.width, height - s_fg.height); // fill in the rest of the forground
