@@ -161,13 +161,15 @@ function Bullet() {
     this.drawX = -20;
     this.drawY = 0;
     this.width = 5;
-    this.height = 5;
+    this.height = 5;    
+    this.explosion = new Explosion();
 }
 
 Bullet.prototype.draw = function() {
     this.drawX += 3;
     ctxJet.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
-    if (this.drawX > gameWidth) this.drawX = -20;
+    this.checkHitEnemy();
+    if (this.drawX > gameWidth) this.recycle();
 };
 
 Bullet.prototype.fire = function(startX, startY) {
@@ -175,17 +177,65 @@ Bullet.prototype.fire = function(startX, startY) {
     this.drawY = startY;
 };
 
+Bullet.prototype.checkHitEnemy = function() {
+    for (var i = 0; i < enemies.length; i++) {
+        if (this.drawX >= enemies[i].drawX &&
+	    this.drawX <= enemies[i].drawX + enemies[i].width &&
+	    this.drawY >= enemies[i].drawY &&
+	    this.drawY <= enemies[i].drawY + enemies[i].height) {
+	        this.explosion.drawX = enemies[i].drawX - (this.explosion.width / 2);
+		this.explosion.drawY = enemies[i].drawY;
+		this.explosion.hasHit = true;
+		this.recycle();
+		enemies[i].recycleEnemy();
+		}
+        }
+};
+
+Bullet.prototype.recycle = function() {
+    this.drawX = -20;
+};
+
 // end of bullet functions
 
-    
+
+
+// explosion functions
+
+function Explosion() {
+    this.srcX  =  20;
+    this.srcY  = 642;
+    this.drawX = 0;
+    this.drawY = 0;
+    this.width = 50;
+    this.height = 50;
+    this.hasHit = false;
+    this.currentFrame = 0;
+    this.totalFrames = 10;
+}
+
+Explosion.prototype.draw = function() {
+    if (this.currentFrame <= this.totalFrames) {
+        ctxJet.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
+        this.currentFrame++;
+    } else {
+        this.hasHit = false;
+        this.currentFrame = 0;
+    }
+};
+
+// end of explosion functions
+
+
 // enemy functions
+
 function Enemy(){
     this.srcX   =   0;
     this.srcY   = 642;
     this.width  = 100;
     this.height =  40;
     this.speed  =   6;
-    this.drawX  = Math.floor((Math.random() * 1000 ) + gameWidth);
+    this.drawX  = Math.floor(Math.random() * 1000 ) + gameWidth;
     this.drawY  = Math.floor(Math.random() * 400);
 }
 
@@ -193,23 +243,23 @@ Enemy.prototype.draw = function() {
     this.drawX -= this.speed / 2;
     ctxEnemy.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
     this.checkEscaped();
-}
+};
 
 Enemy.prototype.checkEscaped = function() {
     if (this.drawX + this.width <= 0) {
         this.recycleEnemy();
     }
-}
+};
 
 Enemy.prototype.recycleEnemy = function() {
-    this.drawX  = Math.floor((Math.random() * 1000 ) + gameWidth);
+    this.drawX  = Math.floor(Math.random() * 1000 ) + gameWidth;
     this.drawY  = Math.floor(Math.random() * 400);
-}
+};
 
 function clearCtxEnemy() {
     ctxEnemy.clearRect(0, 0, gameWidth, gameHeight);
 }
-// enemy functions
+// end enemy functions
 
 // event functions
 
@@ -236,7 +286,6 @@ function checkKeyDown(e) {
         e.preventDefault();
     }
 }
-
 
 function checkKeyUp(e) {
     var keyID = e.keyCode || e.which;
