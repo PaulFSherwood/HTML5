@@ -83,7 +83,7 @@ function clearCtxBg() {
 
 function Jet(){
     this.srcX   =   0;
-    this.srcY   = 601;
+    this.srcY   = 500;
     this.width  = 100;
     this.height =  40;
     this.speed  =   6;
@@ -203,8 +203,8 @@ Bullet.prototype.recycle = function() {
 // explosion functions
 
 function Explosion() {
-    this.srcX  =  20;
-    this.srcY  = 642;
+    this.srcX  = 750;
+    this.srcY  = 500;
     this.drawX = 0;
     this.drawY = 0;
     this.width = 50;
@@ -231,7 +231,7 @@ Explosion.prototype.draw = function() {
 
 function Enemy(){
     this.srcX   =   0;
-    this.srcY   = 642;
+    this.srcY   = 540;
     this.width  = 100;
     this.height =  40;
     this.speed  =   6;
