@@ -59,7 +59,7 @@ okbtn,
   * The bird 
   */
 bird = {
-    x: 80,
+    x: 60,
     y: 100,
     frame: 0,
     animation: [0, 1, 2, 1],
@@ -80,7 +80,7 @@ bird = {
         // floating up and down
         if (currentstate === states.Splash) {
             this.y = height - 280 + 5*Math.cos(frames/10);
-            rotation = 0;
+            this.rotation = 0;
         }
     },
 
@@ -171,6 +171,15 @@ function render() {
 
     s_fg.draw(ctx, fgpos, height - s_fg.height); // forground picture
     s_fg.draw(ctx, fgpos+s_fg.width, height - s_fg.height); // fill in the rest of the forground
+
+    var width2 = width/2;
+
+    if (currentstate === states.Splash) {
+        // show splash screen
+        s_splash.draw(ctx, width2 - s_splash.width/2, height - 300);
+        // show the get ready text
+        s_text.GetReady.draw(ctx, width2 - s_text.GetReady.width/2, height - 380);
+    }
 }
 
 main();
