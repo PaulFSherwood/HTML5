@@ -68,13 +68,20 @@ bird = {
     _jump: 4.6,
 
     jump: function() {
-        this.velocity = -this._jump;
+        this.velocity = -this._jump;  // why is this _jump and not just jump
     },
 
     update: function() {
         var n = currentstate === states.Splash ? 10 : 5;
-        this.frame += frames % n === 0 ? 1 : 0;
+        console.log(n);
+        this.frame += frames % n === 0 ? 1 : 0; // why do we need to watch the frames
         this.frame %= this.animation.length;
+
+        // floating up and down
+        if (currentstate === states.Splash) {
+            this.y = height - 280 + 5*Math.cos(frames/10);
+            rotation = 0;
+        }
     },
 
     draw: function(ctx) {
