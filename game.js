@@ -13,7 +13,7 @@ var gameWidth = canvasBg.width;
 var gameHeight = canvasBg.height;
 var isPlaying = false;
 var requestAnimFrame = window.requestAnimationFrame || 
-                       window.webkitRequestAnimantionFrame ||
+                       window.webkitRequestAnimationFrame ||
                        window.mozRequestAnimationFrame ||
                        window.msRequestAnimationFrame ||
                        window.oRequestAnimationFrame;
@@ -47,7 +47,7 @@ function drawAllEnemies() {
     }
 }
 
-function loop(){
+function loop() {
     if (isPlaying) {
         jet1.draw();
         drawAllEnemies();
@@ -64,7 +64,7 @@ function stopLoop() {
     isPlaying = false;
 }
 
-function drawBg(){
+function drawBg() {
     var srcX = 0;
     var srcY = 0;
     var drawX = 0;
@@ -75,10 +75,12 @@ function drawBg(){
 function clearCtxBg() {
     ctxBg.clearRect(0, 0, gameWidth, gameHeight);
 }
+
 // end of main functions
 
 
 // Jet functions
+
 function Jet(){
     this.srcX   =   0;
     this.srcY   = 601;
@@ -86,22 +88,31 @@ function Jet(){
     this.height =  40;
     this.speed  =   6;
     this.drawX  = 150;
-    this.drawY  = 200;
+    this.drawY  = 400;
+    this.noseX  = this.drawX + 100;
+    this.noseY  = this.drawY + 30;
     this.isUpKey = false;
     this.isRightKey = false;
     this.isDownKey = false;
     this.isLeftKey = false;
+    this.isSpacebar = false;
+    this.isShooting = false;
+    this.bullets = [];
+    this.currentBullet = 0;
+    for (var i = 0; i < 25; i++) {
+        this.bullets[this.bullets.length] = new Bullet();
+    }
 }
 
 Jet.prototype.draw = function() {
     clearCtxJet();
     this.checkDirection();
+    this.noseX = this.drawX + 100;
+    this.noseY = this.drawY + 30;
+    this.checkShooting();
+    this.drawAllBullets();
     ctxJet.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
 };
-
-function clearCtxJet() {
-    ctxJet.clearRect(0, 0, gameWidth, gameHeight);
-}
 
 Jet.prototype.checkDirection = function () {
     if (this.isUpKey) {
@@ -116,9 +127,57 @@ Jet.prototype.checkDirection = function () {
     if (this.isLeftKey) {
         this.drawX -= this.speed;
     }
+};
+
+Jet.prototype.drawAllBullets = function() {
+    for (var i = 0; i < this.bullets.length; i++) {
+        if (this.bullets[i].drawX >= 0) this.bullets[i].draw();
+        if (this.bullets[i].explosion.hasHit) this.bullets[i].explosion.draw();
+    }
+};
+
+Jet.prototype.checkShooting = function() {
+     if (this.isSpacebar && !this.isShooting) {
+         this.isShooting = true;
+         this.bullets[this.currentBullet].fire(this.noseX, this.noseY);
+         this.currentBullet++;
+         if (this.currentBullet >= this.bullets.length) this.currentBullet = 0;
+     } else if (!this.isSpacebar) {
+         this.isShooting = false;
+     } 
+};
+
+function clearCtxJet() {
+    ctxJet.clearRect(0, 0, gameWidth, gameHeight);
 }
+
 // end of Jet functions
 
+// bullet functions
+
+function Bullet() {
+    this.srcX = 100;
+    this.srcY = 500;
+    this.drawX = -20;
+    this.drawY = 0;
+    this.width = 5;
+    this.height = 5;
+}
+
+Bullet.prototype.draw = function() {
+    this.drawX += 3;
+    ctxJet.drawImage(imgSprite, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
+    if (this.drawX > gameWidth) this.drawX = -20;
+};
+
+Bullet.prototype.fire = function(startX, startY) {
+    this.drawX = startX;
+    this.drawY = startY;
+};
+
+// end of bullet functions
+
+    
 // enemy functions
 function Enemy(){
     this.srcX   =   0;
@@ -128,9 +187,6 @@ function Enemy(){
     this.speed  =   6;
     this.drawX  = Math.floor((Math.random() * 1000 ) + gameWidth);
     this.drawY  = Math.floor(Math.random() * 400);
-    this.isUpKey = false;
-    this.isRightKey = false;
-    this.isDownKey = false;
 }
 
 Enemy.prototype.draw = function() {
@@ -156,42 +212,52 @@ function clearCtxEnemy() {
 // enemy functions
 
 // event functions
-function checkKeyDown(e){
+
+function checkKeyDown(e) {
     var keyID = e.keyCode || e.which;
-    if (keyID == 38 || keyID == 87) { // 38 is up arrow, and 87 is 'w' key
+    if (keyID === 38 || keyID === 87) { //up arrow or W key
         jet1.isUpKey = true;
         e.preventDefault();
     }
-    if (keyID == 39 || keyID == 68) { // 39 is right arrow, and 68 is 'd' key
+    if (keyID === 39 || keyID === 68) { //right arrow or D key
         jet1.isRightKey = true;
         e.preventDefault();
     }
-    if (keyID == 40 || keyID == 83) { // 40 is down arrow, and 87 is 's' key
+    if (keyID === 40 || keyID === 83) { //down arrow or S key
         jet1.isDownKey = true;
         e.preventDefault();
     }
-    if (keyID == 37 || keyID == 65) { // 41 is left arrow, and 65 is 'a' key
+    if (keyID === 37 || keyID === 65) { //left arrow or A key
         jet1.isLeftKey = true;
+        e.preventDefault();
+    }
+    if (keyID === 32) { //spacebar
+        jet1.isSpacebar = true;
         e.preventDefault();
     }
 }
 
-function checkKeyUp(e){
+
+function checkKeyUp(e) {
     var keyID = e.keyCode || e.which;
-    if (keyID == 38 || keyID == 87) { // 38 is up arrow, and 87 is 'w' key
+    if (keyID === 38 || keyID === 87) { //up arrow or W key
         jet1.isUpKey = false;
         e.preventDefault();
     }
-    if (keyID == 39 || keyID == 68) { // 39 is right arrow, and 68 is 'd' key
+    if (keyID === 39 || keyID === 68) { //right arrow or D key
         jet1.isRightKey = false;
         e.preventDefault();
     }
-    if (keyID == 40 || keyID == 83) { // 40 is right arrow, and 87 is 's' key
+    if (keyID === 40 || keyID === 83) { //down arrow or S key
         jet1.isDownKey = false;
         e.preventDefault();
     }
-    if (keyID == 37 || keyID == 65) { // 41 is left arrow, and 65 is 'a' key
+    if (keyID === 37 || keyID === 65) { //left arrow or A key
         jet1.isLeftKey = false;
+        e.preventDefault();
+    }
+    if (keyID === 32) { //spacebar
+        jet1.isSpacebar = false;
         e.preventDefault();
     }
 }
