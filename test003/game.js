@@ -224,6 +224,15 @@ function onpress(evt) {
             break;
 
         case states.Score:
+            var mx = evt.offsetX, my = evt.offsetY;
+
+            if (okbtn.x < mx && mx < okbtn.x + okbtn.width &&
+                    okbtn.y < my && okbtn.y + okbtn.height
+               ) {
+                   pipes.reset();
+                   currentstate = states.Splash;
+                   score = 0;
+               }
             break;
     }
 }
@@ -266,6 +275,14 @@ function main() {
     img.onload = function() {
         initSprites(this);
         ctx.fillStyle = s_bg.color; // fill in the background color
+
+        okbtn = {
+            x: (width - s_buttons.Ok.width)/2,
+            y: height - 200,
+            width: s_buttons.Ok.width,
+            height: s_buttons.Ok.height
+        }
+
         run();
     }
     img.src = "res/sheet.png";
@@ -328,6 +345,12 @@ function render() {
         s_splash.draw(ctx, width2 - s_splash.width/2, height - 300);
         // show the get ready text
         s_text.GetReady.draw(ctx, width2 - s_text.GetReady.width/2, height - 380);
+    }
+    // if games is done show game over text
+    if (currentstate === states.Score) {
+        s_text.GameOver.draw(ctx, width2 - s_text.GameOver.width/2, height - 400);  // game over text
+        s_score.draw(ctx, width2 - s_score.width/2, height - 340);                  // score bg picture
+        s_buttons.Ok.draw(ctx, okbtn.x, okbtn.y);                                   // Ok button
     }
 }
 
