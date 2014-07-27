@@ -132,7 +132,7 @@ pipes = {
 	 * Empty pipes array
 	 */
     reset: function() {
-                this._pipes = [];
+        this._pipes = [];
 	},
 
 	/**
@@ -226,6 +226,11 @@ function onpress(evt) {
         case states.Score:
             var mx = evt.offsetX, my = evt.offsetY;
 
+            if (mx == null || my == null) {
+                mx = evt.touches[0].clientX;
+                my = evt.touches[0].clientY;
+            }
+
             if (okbtn.x < mx && mx < okbtn.x + okbtn.width &&
                     okbtn.y < my && okbtn.y + okbtn.height
                ) {
@@ -313,9 +318,9 @@ function update() {
 		best = Math.max(best, score);
 		localStorage.setItem("best", best);
 	}
-	if (currentstate === states.Game) {
-		pipes.update();
-	}
+    if (currentstate === states.Game) {
+        pipes.update();
+    }
 
 	bird.update();
 }
@@ -351,6 +356,11 @@ function render() {
         s_text.GameOver.draw(ctx, width2 - s_text.GameOver.width/2, height - 400);  // game over text
         s_score.draw(ctx, width2 - s_score.width/2, height - 340);                  // score bg picture
         s_buttons.Ok.draw(ctx, okbtn.x, okbtn.y);                                   // Ok button
+
+        s_numberS.draw(ctx, width2 - 47, height - 304, score, null, 10);
+        s_numberS.draw(ctx, width2 - 47, height - 262, best, null, 10);
+    } else {
+        s_numberB.draw(ctx, null, 20, score, width2);
     }
 }
 
