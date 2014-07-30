@@ -1,5 +1,3 @@
-
-
 var
 
 // Game vars //
@@ -20,6 +18,7 @@ currentstate,
 states = {
 	Splash: 0, Game: 1, Score: 2
 },
+
 
 // Game objects //
 
