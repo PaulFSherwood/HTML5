@@ -35,9 +35,9 @@ Crafty.c('Bush', {
 
 // This is the player-controlled character
 Crafty.c('PlayerCharacter', {
-    init: function() {
-        this.requires('Actor, Fourway, Color')
-            .fourway(4)
-            .color('rgb(20, 75, 40)');
-    }
+  init: function() {
+    this.requires('Actor, Fourway, Color')
+      .fourway(4)
+      .color('rgb(20, 75, 40)');
+  }
 });

@@ -21,15 +21,15 @@ Game = {
         return this.map_grid.height * this.map_grid.tile.height;
     },
 
-    // Initialize and start our Game
-    start: function() {
+        // Initialize and start our game
+        start: function() {
         // Start crafty and set a background color so that we can see it's working
         Crafty.init(Game.width(), Game.height());
-        Crafty.background('rgb(249, 223, 125');
-
+        Crafty.background('rgb(249, 223, 125)');
+ 
         // Player character, placed at 5, 5 on our grid
         Crafty.e('PlayerCharacter').at(5, 5);
-
+ 
         // Place a tree at ever edge square on our grid of 16x16 tiles
         for (var x = 0; x < Game.map_grid.width; x++) {
             for (var y = 0; y < Game.map_grid.height; y++) {
