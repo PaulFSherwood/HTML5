@@ -19,6 +19,23 @@ Crafty.c('Grid', {
     }
 });
 
+// An "Actor" is an entity that is drawn in 2D on canvas
+//  via our logical coordinate grid
+Crafty.c('Actor', {
+  init: function() {
+    this.requires('2D, Canvas, Grid');
+  },
+});
+
+// This is the player-controlled character
+Crafty.c('PlayerCharacter', {
+    init: function() {
+        this.requires('Actor, Fourway, Color')
+            .fourway(4)
+            .color('rgb(20, 75, 40)');
+    }
+});
+ 
 Crafty.c('Tree', {
     init: function() {
         this.requires('2D, Canvas, Grid, Color');
@@ -31,13 +48,4 @@ Crafty.c('Bush', {
         this.requires('2D, Canvas, Grid, Color');
         this.color('rgb(20, 185, 40)');
     },
-});
-
-// This is the player-controlled character
-Crafty.c('PlayerCharacter', {
-  init: function() {
-    this.requires('Actor, Fourway, Color')
-      .fourway(4)
-      .color('rgb(20, 75, 40)');
-  }
 });
