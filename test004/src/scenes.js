@@ -91,7 +91,7 @@ Crafty.scene('Loading', function() {
         .css($text_css);
 
     // Load our sprite map image
-    Crafty.load(['assets/16x16_forest_1.gif'], function() {
+    Crafty.load(['assets/16x16_forest_1.gif', 'assets/hunter.png'], function() {
         // Once the image is loading...
         //
         // Define the individual sprites in the image 
@@ -103,8 +103,13 @@ Crafty.scene('Loading', function() {
             spr_tree:     [0, 0],
             spr_bush:     [1, 0],
             spr_village:  [0, 1],
-            spr_player:   [1, 1]
         });
+
+        // Define the PC's sprite to be the first sprite in the third row of the
+        //  animation sprite map
+        Crafty.sprite(16, 'assets/hunter.png', {
+            spr_player:  [0, 2],
+        }, 0, 2);
 
         // Now that our sprites are ready to draw, start the Game
         Crafty.scene('Game');

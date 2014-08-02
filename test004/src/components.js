@@ -22,9 +22,9 @@ Crafty.c('Grid', {
 // An "Actor" is an entity that is drawn in 2D on canvas
 //  via our logical coordinate grid
 Crafty.c('Actor', {
-  init: function() {
-    this.requires('2D, Canvas, Grid');
-  },
+    init: function() {
+        this.requires('2D, Canvas, Grid');
+    },
 });
 
 // A Tree is just an Actor with a certain sprite
@@ -41,38 +41,71 @@ Crafty.c('Bush', {
     },
 });
 
+// A Rock is just an Actor with a certain sprite 
+Crafty.c('Rock', {
+    init: function() {
+        this.requires('Actor, Solid, spr_rock');
+    },
+});
+
 // This is the player-controlled character
 Crafty.c('PlayerCharacter', {
     init: function() {
-        this.requires('Actor, Fourway, Collision, spr_player')
-            .fourway(4)
+        this.requires('Actor, Fourway, Collision, spr_player, SpriteAnimation')
+            .fourway(2)
             .stopOnSolids()
             // Whenever the PC touches a village, respond to the event
-            .onHit('Village', this.visitVillage);
+            .onHit('Village', this.visitVillage)
+            // These next lines define our four animations
+            //  each call to .animate specifies:
+            //  - the name of the animation
+            //  - the x and y coordinates within the sprite
+            //    map at whice the animation set begins
+            //  - the number of animation frames *in addition to* the first one
+            .reel('PlayerMovingUp',    600, 0, 0, 3)
+            .reel('PlayerMovingRight', 600, 0, 1, 3)
+            .reel('PlayerMovingDown',  600, 0, 2, 3)
+            .reel('PlayerMovingLeft',  600, 0, 3, 3);
+
+        // Watch for a change of direction and switch animations accordingly
+        var animation_speed = 4;
+        this.bind('NewDirection', function(data) {
+            if (data.x > 0) {
+                this.animate('PlayerMovingRight', animation_speed, -1);
+            } else if (data.x < 0) {
+                this.animate('PlayerMovingLeft', animation_speed, -1);
+            } else if (data.y > 0) {
+                this.animate('PlayerMovingDown', animation_speed, -1);
+            } else if (data.y < 0) {
+                this.animate('PlayerMovingUp', animation_speed, -1);
+            } else {
+                this.stop();
+            }
+        });
+    },
+        
+    // Registers a stop-movement function to be called when
+    //  this entity hits an entity with the "Solid" component
+    stopOnSolids: function() {
+        this.onHit('Solid', this.stopMovement);
+ 
+        return this;
+    },
+ 
+    // Stops the movement
+    stopMovement: function() {
+        this._speed = 0;
+        if (this._movement) {
+            this.x -= this._movement.x;
+            this.y -= this._movement.y;
+        }
     },
 
-  // Registers a stop-movement function to be called when
-  //  this entity hits an entity with the "Solid" component
-  stopOnSolids: function() {
-    this.onHit('Solid', this.stopMovement);
- 
-    return this;
-  },
- 
-  // Stops the movement
-  stopMovement: function() {
-    this._speed = 0;
-    if (this._movement) {
-      this.x -= this._movement.x;
-      this.y -= this._movement.y;
+    // Respond to this player visiting a village
+    visitVillage: function(data) {
+        village = data[0].obj;
+        village.collect();
     }
-  },
-
-  // Respond to this player visiting a village
-  visitVillage: function(data) {
-      village = data[0].obj;
-      village.collect();
-  }
 });
 
 // A village is a tile on the grid that the PC must visit in order to win the Game
