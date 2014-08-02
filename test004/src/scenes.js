@@ -1,3 +1,4 @@
+// http://buildnewgames.com/introduction-to-crafty/
 // Game scene
 // --------------
 // Runs the core gameplay loop

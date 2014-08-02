@@ -1,3 +1,4 @@
+// http://buildnewgames.com/introduction-to-crafty/
 // The Grid component allows an element to be located
 //  on a grid of tiles
 Crafty.c('Grid', {
