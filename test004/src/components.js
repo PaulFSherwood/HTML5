@@ -71,15 +71,15 @@ Crafty.c('PlayerCharacter', {
         var animation_speed = 4;
         this.bind('NewDirection', function(data) {
             if (data.x > 0) {
-                this.animate('PlayerMovingRight', animation_speed, -1);
+                this.animate('PlayerMovingRight', -1);
             } else if (data.x < 0) {
-                this.animate('PlayerMovingLeft', animation_speed, -1);
+                this.animate('PlayerMovingLeft',  -1);
             } else if (data.y > 0) {
-                this.animate('PlayerMovingDown', animation_speed, -1);
+                this.animate('PlayerMovingDown',  -1);
             } else if (data.y < 0) {
-                this.animate('PlayerMovingUp', animation_speed, -1);
+                this.animate('PlayerMovingUp',    -1);
             } else {
-                this.stop();
+                this.pauseAnimation();
             }
         });
     },
@@ -116,6 +116,7 @@ Crafty.c('Village', {
 
     collect: function() {
         this.destroy();
+        Crafty.audio.play('knock');
         Crafty.trigger('VillageVisited', this);
     }
 });
