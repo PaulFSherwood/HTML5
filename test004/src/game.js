@@ -26,7 +26,10 @@ Game = {
         // Start crafty and set a background color so that we can see it's working
         Crafty.init(Game.width(), Game.height());
         Crafty.background('rgb(249, 223, 125)');
- 
+
+        // Simply start the "Game" scene to get things going
+        Crafty.scene('Game');
+
         // Player character, placed at 5, 5 on our grid
         Crafty.e('PlayerCharacter').at(5, 5);
  
