@@ -1,13 +1,17 @@
-function hovIn() {
-    var areaID = $(this).attr('id');
-    //alert('['+areaID+']');
-    if (areaID == 'CUST_1') {
-        $('#myDiv').show();
-    }
-}
-
-function hovOut() {
-    $('#myDiv').hide();
-}
-
-$('map area').hover(hovIn, hovOut);
+    $(document).ready(function() {
+        if($('#map')) {
+            $('#map area').each(function() {
+                var id = $(this).attr('id');
+                $(this).mouseover(function() {
+                    $('#overlay'+id).show();
+                    
+                });
+                
+                $(this).mouseout(function() {
+                    var id = $(this).attr('id');
+                    $('#overlay'+id).hide();
+                });
+            
+            });
+        }
+    });
