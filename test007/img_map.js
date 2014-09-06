@@ -1,8 +1,6 @@
 function writeText(txt)
 {
-    console.log("called!");
+    console.log(txt);
     //document.getElementById("desc").innerHTML=txt;
-
-
 
 }
