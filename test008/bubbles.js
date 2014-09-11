@@ -4,16 +4,14 @@ var scores = [ 60, 50, 60, 58, 54, 54,
                69, 64, 66, 55, 52, 61,
                46, 31, 57, 52, 44, 18,
                41, 53, 55, 61, 51, 44 ];
-// this isnt very usefull yet
-var scrIdSort = [];
 
 printArray(scores);
-findTopScore(scores, scrIdSort);
+findTopScore(scores);
 
 // Print entire array
 function printArray(myArray) {
     var i = 0;
-    while (i < myArray.length) {
+    while (i < myArray.length-(myArray.length/2)) {
         console.log("Bubble solution #" + i + " score: " + myArray[i]);
         i++;
     }
@@ -21,9 +19,10 @@ function printArray(myArray) {
 }
 
 // find the highest score in the array
-function findTopScore(myArray, sortID) {
+function findTopScore(myArray) {
     // variables
     var holdId = 0;
+    var sortID = [];
 
     // run untill we have all the index numbers
     while (sortID.length != myArray.length) {
@@ -48,11 +47,4 @@ function findTopScore(myArray, sortID) {
         // blarg
         console.log("Solutions with the highest score: #" + myArray[sortID[i]]);
     }
-
-    // not really used
-    return sortID;
 }
-
-console.log = function(d) {
-  process.stdout.write(d);
-};
