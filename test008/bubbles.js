@@ -12,26 +12,24 @@ var costs = [.25, .27, .25, .25, .25, .25,
              .20, .25, .30, .25, .24, .25,
              .25, .25, .27, .25, .26, .29];
 
-
+var sortID = [];
 
 printArray(scores);
-findTopScore(scores);
+findTopScore(scores, sortID);
+findCost(scores, sortID, costs);
 
 // Print entire array
 function printArray(myArray) {
-    var i = 0;
-    while (i < myArray.length-(myArray.length/2)) {
+    for (var i = myArray.length-1; i > (myArray.length-5); i--) {
         console.log("Bubble solution #" + i + " score: " + myArray[i]);
-        i++;
     }
     console.log("Bubbles tests: " + i);
 }
 
 // find the highest score in the array
-function findTopScore(myArray) {
+function findTopScore(myArray, sortID) {
     // variables
     var holdId = 0;
-    var sortID = [];
 
     // run untill we have all the index numbers
     while (sortID.length != myArray.length) {
@@ -52,8 +50,29 @@ function findTopScore(myArray) {
     }
 
     // First pass should be done time to recheck for copies
-    for (var i = sortID.length-1; i > (sortID.length-6); i--) {
+    for (var i = sortID.length-1; i > (sortID.length-3); i--) {
         // blarg
-        console.log("Solutions with the highest score: #" + myArray[sortID[i]]);
+        console.log("Solutions with the highest score: #" + myArray[sortID[i]] + " at index: " + sortID[i]);
     }
+}
+
+// find the highest bubble score then find out which on cost the least
+function findCost(myArray, sortID, costs) {
+    // sortID should have the scores from highest to lowest.
+    // i guess ill just take the top score and see if the next one is cheaper
+    // if it is then show the second one, if its more show the first one.
+
+    if (myArray[sortID[sortID.length-1]] === myArray[sortID[sortID.length-2]]) {
+        if (costs[sortID[0]] < costs[sortID[1]]) {
+            console.log("Lowest price is solution #" + myArray[sortID[sortID.length-1]] + 
+                            " Index:" + sortID[sortID.length-1] + 
+                            " Price:" + costs[sortID[sortID.length-1]]);
+        } else {
+                console.log("Lowest price is solution #" + myArray[sortID[sortID.length-2]] + 
+                            " Index:" + sortID[sortID.length-2] + 
+                            " Price:" + costs[sortID[sortID.length-2]]);
+        }
+    } else {
+        console.log("failed");
+    } 
 }
