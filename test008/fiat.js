@@ -7,7 +7,7 @@ var vehicle = {
     convertable: false,
     mileage: 1,
     started: false
-}
+};
 
 var fiat = {
     make: "Fiat",
