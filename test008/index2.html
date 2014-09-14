@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Planets</title>
     <style type="text/css">
-        p.redText { color: red; }
+        p.redText { color: red; font-weight: bold}
+        p.blueText { color: blue; font-weight: bold }
     </style>
     <script>
         function init() {
@@ -12,6 +13,8 @@
             planet.innerHTML = "Red Alert: hit by phaser fire!";
 
             planet.setAttribute("class", "redText");
+            planet.setAttribute("align", "center");
+            document.getElementById("blueplanet").setAttribute("class", "blueText");
         }
         
         window.onload = init;
