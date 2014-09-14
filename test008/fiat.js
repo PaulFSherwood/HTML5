@@ -18,9 +18,15 @@ var fiat = {
     convertible: false,
     mileage: 88000,
     started: false,
+    fuel: 0,
 
     start: function() {
-        this.started = true;
+        if (this.fuel > 0) {
+            this.started = true;
+        } else {
+            alert ("No fuel to start");
+            this.started = false;
+        }
     },
 
     stop: function() {
@@ -29,10 +35,19 @@ var fiat = {
 
     drive: function() {
         if (this.started) {
-            alert("Zoom zoom!");
+            if (this.fuel > 0) {
+                alert(this.make + " " + this.model + " goes zoom zoom!");
+            this.fuel = this.fuel -1;
+            } else {
+                alert ("Uh oh, out of fuel.");
+                this.stop();
+            }
         } else {
             alert("You need to start the engine first.");
         }
+    },
+    addFuel: function(amount) {
+        this.fuel = this.fuel + amount;
     }
 };
 
