@@ -3,12 +3,44 @@
 <head>
 	<meta charset="utf-8">
 	<title>Test 010</title>
-    <script type="text/javascript" src="../jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="../lib/fgcommand.js"></script>
+    <script type="text/javascript" src="../lib/props.js"></script>
+    <link rel="stylesheet" type="text/css" href="jfunc.css"></link>
 </head>
 </body>
-    <input type="text" size="50" maxlength="140" id="tweet_box" />
-    <div id="tweet_feedback"></div>
 
+    <div class="box">
+        <div id="HDGBUG">
+            <!-- Heading bug -->
+            <h1>HDG Bug:
+            <input type="button" id="HDGbtnr10" value="<<"/> <!-- set value from here -->
+            <input type="button" id="HDGbtnr1" value="<"/>   <!-- set value from here -->
+            <input type="text" size="3" id="HDG" value="0"/> <!-- GET value from here -->
+            <input type="button" id="HDGbtnl1" value=">"/>   <!-- set value from here -->
+            <input type="button" id="HDGbtnl10" value=">>"/> <!-- set value from here -->
+            </h1>
+        </div>
+        <div id="CRSBUG">
+            <!-- Course bug -->
+            <h1>CRS Bug:&nbsp
+            <input type="button" id="CRSbtnr10" value="<<"/> <!-- set value from here -->
+            <input type="button" id="CRSbtnr1" value="<"/>   <!-- set value from here -->
+            <input type="text" size="3" id="CRS" value="0"/> <!-- GET value from here -->
+            <input type="button" id="CRSbtnl1" value=">"/>   <!-- set value from here -->
+            <input type="button" id="CRSbtnl10" value=">>"/> <!-- set value from here -->
+            </h1>
+        </div>
+    </div>
+    <div class="box">
+        <div id="NDSET">
+            <h1>ND Range:
+            <input type="button" id="NDl" value="<"/>       <!-- set value from here -->
+            <input type="text" size="3" id="ND" value="5"/> <!-- GET value from here -->
+            <input type="button" id="NDr" value=">"/>       <!-- set value from here -->
+            </h1>
+        </div>
+    </div>
     <script type="text/javascript" src="jfunc.js"></script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+body {
+    background-color: #EEE;
+    margin-left: 10px;
+}
+
+.box {
+    display: inline-table;
+    margin:  1em;
+}
+
+#HDGBUG {
+    background-color: #EEF;
+}
+
+#CRSBUG {
+    background-color: #EED;
+}
+
+#NDSET {
+    background-color: #DDD;
+}

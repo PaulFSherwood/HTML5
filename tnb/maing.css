@@ -1,0 +1,9 @@
+p.tuna{color:green}
+h1.tuna{color:blue}
+p[name]{color:red}
+p[name="bob"]{color:yellow}
+p[name^="bacon"]{color:purple}
+p[name&="bacon"]{color:pink}
+
+p:nth-child(3){color:green;}
+p:nth-child(even){color:red;}

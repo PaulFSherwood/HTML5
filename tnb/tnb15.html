@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>someones website</title>
+    <link rel="stylesheet" href="maing15.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>
+		$(function() {
+			$("li").click(function(e) {
+			  e.preventDefault();
+			  $("li").removeClass("active");
+			  $(this).addClass("active");
+			});
+		});
+	</script>
+</head>
+<body>
+
+<title> blarg </title>
+
+
+<body>
+<ul class="tabs group">
+    <li class="active"><a href="#one">One</a>
+        <!-- <ul class="box">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul> -->
+    </li>
+    <li><a href="#two">Two</a></li> 
+    <li><a href="#three">Three</a></li>
+    <li><a href="#three">Four</a></li> 
+</ul>
+    
+</body>
+
+
+</body>
+    
+</html>

@@ -1,0 +1,9 @@
+*{color:blue}
+
+:not(.paul){color:red;}
+
+/* div > p {color:green;} */
+
+/* p.paul + p {color:blue;} */
+
+p.paul ~ p {color:black;}
