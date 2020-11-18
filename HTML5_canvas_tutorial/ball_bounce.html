@@ -1,0 +1,53 @@
+<script src="jquery.js" type="text/javascript"></script>
+</body>
+<style>
+#ball {
+  background: url(images2/ball_bounce.png);
+  width: 50px;
+  height: 50px;
+  animation: ball-bounce 0.7s steps(6) infinite;
+}
+@keyframes ball-bounce {
+  from { background-position: 300px; }
+  to { background-position: 0px; }
+}
+</style>
+<script>
+// Preload the sprite sheet image
+var sheet = new Image();
+    sheet.src = "images/ball_bounce.png";
+// This function is called to run in the window load event
+function initCanvas() {
+    // Get the canvas 2D context object
+    var ctx = document.getElementById('my_canvas').getContext('2d');
+    // Get the canvas width and height from the ctx object
+    var cW = ctx.canvas.width, cH = ctx.canvas.height;
+    // Make a variable that will help us perform the clipping
+    var clipX = 0;
+    // This function runs repeatedly using setInterval or requestAnimationFrame
+    function animate() {
+        // Clear the canvas (erase the whole thing)
+        ctx.clearRect(0, 0, cW, cH);
+        // If clipX frame position is the last frame
+        if (clipX > 250) {
+            // Go back to the first frame
+            clipX = 0;
+        }
+        // drawImage(my_pic, clipX, clipY, clipW, clipH, x, y, w, h);
+        ctx.drawImage(sheet, clipX, 0, 50, 50, 0, 0, 50, 50);
+        // Increment clipX by the frame width
+        clipX += 50;
+    }
+    // make the animate() function run repeatedly
+    var animateInerval = setInterval(animate, 100);
+}
+// the load event of the window object fires when the DOM is ready
+window.addEventListener("load", initCanvas);
+
+$("body").keyup(function(event) { 
+    console.log("event.keyCode="+event.keyCode);
+});
+</script>
+<div id="ball2"</div>
+<canvas id="my_canvas" width="640" height="480"></canvas>
+</body>
