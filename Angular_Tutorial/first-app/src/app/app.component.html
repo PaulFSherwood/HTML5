@@ -1,0 +1,9 @@
+<h2>Input Server Information</h2>
+<input type="text" placeholder="Server Name" [(ngModel)] = "ServerName">
+<h3>Display Server Information</h3>
+<p>{{ServerName}}</p>
+<p>{{ServerPID}}</p>
+<p>{{ServerStatus}}</p>
+
+<!-- This button will run the toggleserverstatus function in .ts-->
+<button [disabled]="buttonState" (click)="toggleServerStatus()">Toggle Server Status</button>
