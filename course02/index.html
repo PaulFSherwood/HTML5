@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <!-- 
+    <meta http-equiv="refresh" content="5" />
+    -->
+    <head>
+        <title> jQuery Tutorial</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script type="text/javascript" src="jquery-3.5.1.js"></script>
+    </head>
+    <body>
+        <h1>jQuery Tutorial</h1>
+        <p>By Edureka</p>
+        <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                // console.log("Value: " + $("#sometext").val());
+                $(".bacon").text($("#sometext").val());
+            })
+        });
+        </script>
+        <input type="text" id="sometext" value="">
+        <button>Submit</button>
+        <p class="bacon">Will change</p>
+        
+        <div class="puppers">
+            <img id ="good" src="puppie/goldie.jpg">
+            <img id ="bad" src="puppie/husky.jpg">
+            <img id ="good" src="puppie/Boxer.jpg">
+        </div>
+        <script>
+            $(document).ready(function() {
+                $("#addClass").click(function() {
+                    $("img").toggleClass("styleclass");
+                });               
+                
+                $("#good").click(function() {
+                    $("img").hide();
+                });
+            });
+        </script>
+        <br style="clear: both"/>
+        <button id="addClass"> Try addClass()</button>
+    </body>
+</html>
+ 
