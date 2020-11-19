@@ -1,22 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';     // you need this to add forms to you html page 
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent    } from './app.component';
 import { ServerComponent } from './server/server.component';
 import { SubServerComponent } from './sub-server/sub-server.component';
+import { RedComponent } from './red/red.component';
+import { GreenComponent } from './green/green.component';
+import { YellowComponent } from './yellow/yellow.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerComponent,
-    SubServerComponent
+    SubServerComponent,
+    RedComponent,
+    GreenComponent,
+    YellowComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule
+    FormsModule                                     // you need this to add forms to you html page  
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,8 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           },
@@ -127,6 +127,6 @@
   },
   "defaultProject": "first-app",
   "cli": {
-    "analytics": "2f43714d-5ebb-4296-a680-ceeaa7bedbff"
+    "analytics": false
   }
 }

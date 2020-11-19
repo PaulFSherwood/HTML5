@@ -1,0 +1,24 @@
+p {
+    clear: both;
+    position: relative;
+    background-color: green;
+    padding-left: 20px;
+    width: 120px;
+
+    animation: ani 3s infinite;
+    animation-delay: 1s;
+}
+
+
+@keyframes ani {
+    0% {
+        left: 0;
+    }
+    50% {
+        left: 720px;
+    }
+    100% {
+        left: 0;
+    }
+}
+  
