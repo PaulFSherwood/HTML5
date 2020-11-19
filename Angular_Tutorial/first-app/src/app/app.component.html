@@ -9,4 +9,9 @@
 <button [disabled]="buttonState" (click)="toggleServerStatus()">Toggle Server Status</button>
 <br><br><br>
 <input type="text" placeholder="Server Name" [(ngModel)]="ServerName">
+<input type="text" placeholder="Server Name" [ngModel]="ServerName">
 <p>{{ServerName}}</p>
+<br><br>
+<input type="text" placeholder="First Name" [(ngModel)]="FName"> <!-- Create a input get the first name-->
+<p>{{FName}}</p>                                                 <!-- Output the First Name -->
+<button (click)="clearFNameField()">Clear First Name</button>    <!-- Clear the First Name -->

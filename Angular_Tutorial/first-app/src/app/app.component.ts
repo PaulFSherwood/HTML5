@@ -12,22 +12,26 @@ export class AppComponent {
   ServerStatus = 'offline';
   statusFlag = false;
   buttonState = true;
+  FName = '';
 
   constructor() {
     setTimeout(() => {
       this.buttonState = false;
     }, 2500);
   }
-  
-  toggleServerStatus() {
 
+  toggleServerStatus() {
     this.statusFlag = !this.statusFlag;
-    if (this.statusFlag === true) {
-      this.ServerStatus = 'online';
-    } else {
-      this.ServerStatus = 'offline';
-    }
-    return this.ServerStatus;
+  //   if (this.statusFlag === true) {
+  //     this.ServerStatus = 'online';
+  //   } else {
+  //     this.ServerStatus = 'offline';
+  //   }
+  //   return this.ServerStatus;
+    return (this.statusFlag ? this.ServerStatus = 'online' : this.ServerStatus = 'offline');
+  }
+  clearFNameField(){
+    this.FName = '';
   }
 
 }
