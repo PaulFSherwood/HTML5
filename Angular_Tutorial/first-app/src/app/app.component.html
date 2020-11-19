@@ -1,14 +1,12 @@
 <h1>App Component File</h1>
 <!-- <app-server></app-server> -->
 <div class="app-server"></div>
-<br>
-<br>
 <app-yellow></app-yellow>
-<br>
-<br>
 <app-red></app-red>
-<br>
-<br>
 <app-green></app-green>
 <br>
-<br>
+<p>Server {{ServerName}} with PID {{ServerPID}} is {{ServerStatus}} </p>
+<button [disabled]="buttonState" (click)="toggleServerStatus()">Toggle Server Status</button>
+<br><br><br>
+<input type="text" placeholder="Server Name" [(ngModel)]="ServerName">
+<p>{{ServerName}}</p>
