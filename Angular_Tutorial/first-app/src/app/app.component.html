@@ -35,6 +35,8 @@
     The text is supposed to dissapear and I left a - there for formating.
     I could use something like *ngIf='FName' to have the field dissapear,
     but it may be that we need to switch between two states. -->
-<p *ngIf="paraFlag; else elseblock2" [ngClass]="{wild : paraSetStyle}">This is a paragraph that I am supposed to do something with.</p>  <!-- working switches the paragraph but not the style -->
-<ng-template #elseblock2><p>-</p></ng-template>
 <button (click)="toggleParagraph()">Toggle Paragraph</button>  
+<!-- <p *ngIf="paraFlag; else elseblock2" [ngClass]="{wild : paraSetStyle}">This is a paragraph that I am supposed to do something with.</p> --> <!-- working switches the paragraph but not the style -->
+<!-- <ng-template #elseblock2><p></p></ng-template> -->
+
+<p *ngIf="paraFlag" [ngClass]="{wild : paraSetStyle}">This is a paragraph that I am supposed to do something with.</p>
