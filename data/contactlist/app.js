@@ -22,9 +22,7 @@ app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
-// app.use('/api', route);
-app.use(app.router);
-routes.initialize(app);
+app.use('/api', route);
 
 
 // testing SErver
