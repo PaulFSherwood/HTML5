@@ -7,15 +7,31 @@ var path = require('path');
 
 var app = express();
 
-// port number 
+const route = require('./routes/route');
+
+// port number
 const port = 3000;
 
-// testing server
+// adding midelware = cors
+app.use(cors());
+
+// body parser
+app.use(bodyparser.json());
+
+// statuic files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// routes
+// app.use('/api', route);
+app.use(app.router);
+routes.initialize(app);
+
+
+// testing SErver
 app.get('/', (req, res)=> {
     res.send('foobar');
 });
 
-
-app.listen(port, ()=>{
-    console.log('Server started at port: ' + port);
-})
+app.listen(port,()=> {
+    console.log('Server started at port: '+port);
+});
