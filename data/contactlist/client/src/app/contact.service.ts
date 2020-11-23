@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class ContactsService {
+export class ContactService {
   constructor(private http: Http) { }
 
   // Retrieving Contact Services
