@@ -8,7 +8,7 @@ import { Contact } from '../contact';
   styleUrls: ['./contacts.component.css'],
   providers: [ContactService]
 })
-export class ContactsComponent implements OnInit {
+export class ContactComponent implements OnInit {
   contacts: Contact[];
   contact: Contact;
   first_name: string;
