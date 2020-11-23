@@ -20,7 +20,7 @@ router.post('/contact', (req, res, next)=> {
         phone: req.body.phone
     });
     newContact.save((err, contact)=>{
-        if(err) {
+        if (err) {
             res.json({msg : 'Failed to add contact'});
         } else {
             res.json({msg: 'Contact added successfully'});
@@ -29,7 +29,7 @@ router.post('/contact', (req, res, next)=> {
 });
 
 // delete contacts
-router.delete('/contact', (req, res, next)=> {
+router.delete('/contact:id', (req, res, next)=> {
     // logic to delete a contact
     Contact.remove({_id: req.params.id}, function(err, result) {
         if (err) {
