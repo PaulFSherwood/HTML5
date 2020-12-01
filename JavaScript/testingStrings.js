@@ -1,12 +1,17 @@
+# This should be the number of table rows
+# It should be possible to grab every rows, but it is growing
 for(var i = 5; i < 20; i++){
+	# find the table row with the word "the"
     if (document.getElementsByTagName("tr")[i].getElementsByTagName("td")[2].innerText == "the") 
 	{ 
 		console.log("true");
+		# Make sure the cell is hidden
 		document.getElementsByTagName("tr")[i].style.display = ""
 	} 
 	else 
 	{ 
 		console.log("false");
+		# Hide the cell
 		document.getElementsByTagName("tr")[i].style.display = "none"
 	}
 }
