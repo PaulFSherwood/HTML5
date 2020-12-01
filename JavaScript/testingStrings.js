@@ -2,10 +2,12 @@ for(var i = 5; i < 20; i++){
     if (document.getElementsByTagName("tr")[i].getElementsByTagName("td")[2].innerText == "the") 
 	{ 
 		console.log("true");
+		document.getElementsByTagName("tr")[i].style.display = ""
 	} 
 	else 
 	{ 
-		console.log("false"); 
+		console.log("false");
+		document.getElementsByTagName("tr")[i].style.display = "none"
 	}
 }
 
