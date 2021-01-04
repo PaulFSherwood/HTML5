@@ -1,0 +1,21 @@
+body {
+	background-color: #cc99ff;
+}
+h1 {
+    color: red;
+    text-align: center;
+}
+h2 {
+    color: black;
+    margin: auto;
+}
+.square {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    margin: auto;
+}
+#circle {
+    color: darkred;
+    font-size: 40px;
+}
