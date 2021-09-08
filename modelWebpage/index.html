@@ -25,7 +25,7 @@
                 document.body.appendChild(renderer.domElement);
 
                 let loader = new THREE.GLTFLoader();
-                loader.load('scene.gltf', function(gltf){
+                loader.load('SpaceShip.glb', function(gltf){
                     scene.add(gltf.scene);
                     renderer.render(scene, camera);
                 })
