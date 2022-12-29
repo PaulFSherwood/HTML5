@@ -1,0 +1,35 @@
+body {
+    background-color: #FAF8F1;
+    color: #C58940;
+}
+table tr td h1 em{
+    color: #E5BA73;
+    padding-left: 25px;
+}
+table tr td h2{
+    padding-left: 25px;
+    color: #E5BA73;
+}
+table tr td h3{
+    padding-left: 25px;
+    color: #C58940;
+}
+table tr td p{
+    padding-left: 25px;
+    color: #E5BA73;
+}
+table tr td {
+    color: #C58940;
+    text-shadow: 2px 2px 2px grey;
+}
+hr {
+    /* 
+    height: 1px;
+    */
+    width: 5%;
+    /* top right bottom left */
+    /*border-style:  dotted none none none;*/
+    border-style: none;
+    border-top-style: dotted;
+    border-width: 10px;
+}
