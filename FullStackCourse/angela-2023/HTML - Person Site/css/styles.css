@@ -33,3 +33,17 @@ hr {
     border-top-style: dotted;
     border-width: 10px;
 }
+.guitar {
+    background-color: #C58940;
+    border-radius: 80%;
+    border-left:    50px solid transparent;
+    border-right:   50px solid transparent;
+}
+.drum {
+    background-color: #E5BA73;
+    border-left:    50px solid transparent;
+    border-right:   50px solid transparent;
+}
+.circularBG {
+    border-radius: 100%;
+}
