@@ -1,18 +1,26 @@
 
 body {
+    font-family: 'Merriweather', serif;
     margin: 0px;
     text-align: center;
-    font-family: 'Merriweather', serif;
 }
 h1 {
-    /* center the element */
-    margin-top: 0;
+    color: #66BFBF;
     font-family: 'Sacramento', cursive;
+    font-size: 5.625rem;
+    line-height: 2;
+    /* center the element */
+    margin: 50px auto 0 auto;
 }
 h2 {
+    color: #66BFBF;
     font-family: 'Montserrat', sans-serif;
+    /* 1em = 16px 40/16=2.5 */
+    font-size: 2.5rem;
+    font-weight: normal;
 }
 h3 {
+    color: #11999E;
     font-family: 'Montserrat', sans-serif;
 }
 .top-container {
@@ -20,6 +28,16 @@ h3 {
     position: relative;
     padding-top: 100px;
 
+}
+.intro {
+    color: #40514E;
+    font-family: 'Montserrat', sans-serif;
+    /* 1em = 16px 40/16=2.5 */
+    font-size: 1.5rem;
+    font-weight: normal;
+    width: 40%;
+    display: block;
+    margin: auto;
 }
 .middle-container {
 }
@@ -37,4 +55,40 @@ h3 {
     position: absolute;
     left: 300px;
     bottom: 300px;
+}
+.skill-row {
+    width: 50%;
+    /* center the thing but also 100px top and bottom
+    could have done
+    margin: auto;
+    if I wasn't concerned about top and bottom */
+    margin: 100px auto 100px auto;
+}
+.skill-row h3 {
+    text-align: left;
+    position: relative;
+}
+.skill-row p {
+    text-align: left;
+    line-height: 2;
+}
+.computer-img {
+    width: 25%;
+    float: left;
+    margin-right: 30px;
+}
+.chillies-img {
+    width: 25%;
+    float: right;
+    margin-left: 30px;
+}
+hr {
+    color: #EAF6F6;
+    /* top right bottom left */
+    /*border-style:  dotted none none none;*/
+    border-style: none;
+    border-top-style: dotted;
+    border-width: 10px;
+    width: 5%;
+    margin: 100px auto 100px auto;
 }
