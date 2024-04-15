@@ -4,18 +4,80 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Someones Portfolio</title>
+    <title>Pauls Portfolio</title>
+    <link rel="icon" href="img/myico.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>Someone\'s Portfolio</h1>
-    <h2>I'm a weirdo dev</h2>
+    <div class="topme">
+    <h1>Pauls Portfolio</h1>
+    <img src="./img/meHobbies-400.png" alt="Picture of hobbies, aviation, electronics and programming.">
     <hr />
-    <h3><a href="./public/movie-ranking.html">Movie Ranking Project</a></h3>
-    <h2>The Best Movcies according to angela</h2>
-    <h3>My top 3 movies of all-time</h3>
-    <hr />
-    <h3>Spiried Away</h3>
+    </div>
+    <br />
+    <!-- css left to right carousel 4 images and text -->
+
+    <div class="slider">
+        <a href="#slide-1">1</a>
+        <a href="#slide-2">2</a>
+        <a href="#slide-3">3</a>
+        <a href="#slide-4">4</a>
+      
+        <div class="slides">
+            <div id="slide-1">
+                <article>
+                <div class="info top-left"><h3>Web Development</h3></div>
+                <img class="img" src="./img/me-webdev-400.png" alt="Image of me doing web development">
+                <div class="info bottom-left">
+                    <p>Self taught and college taught web developer</p>
+                </div>
+            </article>
+            </div>
+            <div id="slide-2">
+            <article>
+                <div class="info top-left"><h2>Electronics</h2></div>
+                <img id="img" src="./img/me-electronics-400.png" alt="Image of me doing electronics">
+                <div class="info bottom-left">
+                    <p>Taught electronics throught the military</p>
+                </div>
+            </article>
+            </div>
+            <div id="slide-3">
+            <article>
+                <div class="info bottom-left"><h2>Aviation</h2></div>
+                <img id="img" src="./img/me-aviation-400.png" alt="Image of me doing aviation">
+                <div class="info bottom-left">
+                <p>Learned to fly on the job in simulation. Continued for fun</p>
+                </div>
+            </article>
+            </div>
+            <div id="slide-4">
+            <article>
+              <div class="info top-left"><h2>Hacking</h2></div>
+                <img id="img" src="./img/me-hack-400.png" alt="Image of me doing hacking">
+                <div class="info bottom-left">
+                    <p>Learning to hack right now, not my favorite thing but useful for security.</p>
+                </div>
+            </article>
+            </div>
+      
+          </div>
+          <!-- .inner -->
+        </div>
+
+        <!-- .slider-dot-control -->
+      </div>
+
+
+
+
+
+
+
+
+    <h3>Web Development</h3>
+
     <p>This is my something I can't read the text</p>
     <h3>Ex Machina</h3>
     <p>Really good stuff</p>
@@ -26,11 +88,14 @@
     <h3><a href=".public/birthday-invite.html">Birthday Invite Project</a></h3>
     <h2>My Birthday Invite</h2>
     <h2>On the 15th of may</h3>
-    <img src="./assets/images/birthday-invite.png" height="200" alt="birthday invite project preview"/>
+    <!-- <img src="./assets/images/birthday-invite.png" height="200" alt="birthday invite project preview"/> -->
 
     <hr />
     <a href="./public/about.html">About Me</a>
     <a href="./public/contact.html">Contact Me</a>
+
+    
+
 </body>
 </html>
 
