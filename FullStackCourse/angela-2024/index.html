@@ -17,58 +17,72 @@
     </div>
     <br />
     <!-- css left to right carousel 4 images and text -->
+    <div class="container">
+        <div class="carousel">
+            <input type="radio" id="carousel-1" name="carousel[]" checked>
+            <input type="radio" id="carousel-2" name="carousel[]">
+            <input type="radio" id="carousel-3" name="carousel[]">
+            <input type="radio" id="carousel-4" name="carousel[]">
 
-    <div class="slider">
-        <a href="#slide-1">1</a>
-        <a href="#slide-2">2</a>
-        <a href="#slide-3">3</a>
-        <a href="#slide-4">4</a>
-      
-        <div class="slides">
-            <div id="slide-1">
-                <article>
-                <div class="info top-left"><h3>Web Development</h3></div>
-                <img class="img" src="./img/me-webdev-400.png" alt="Image of me doing web development">
-                <div class="info bottom-left">
-                    <p>Self taught and college taught web developer</p>
-                </div>
-            </article>
-            </div>
-            <div id="slide-2">
-            <article>
-                <div class="info top-left"><h2>Electronics</h2></div>
-                <img id="img" src="./img/me-electronics-400.png" alt="Image of me doing electronics">
-                <div class="info bottom-left">
-                    <p>Taught electronics throught the military</p>
-                </div>
-            </article>
-            </div>
-            <div id="slide-3">
-            <article>
-                <div class="info bottom-left"><h2>Aviation</h2></div>
-                <img id="img" src="./img/me-aviation-400.png" alt="Image of me doing aviation">
-                <div class="info bottom-left">
-                <p>Learned to fly on the job in simulation. Continued for fun</p>
-                </div>
-            </article>
-            </div>
-            <div id="slide-4">
-            <article>
-              <div class="info top-left"><h2>Hacking</h2></div>
-                <img id="img" src="./img/me-hack-400.png" alt="Image of me doing hacking">
-                <div class="info bottom-left">
-                    <p>Learning to hack right now, not my favorite thing but useful for security.</p>
-                </div>
-            </article>
-            </div>
-      
-          </div>
-          <!-- .inner -->
+            <ul class="carousel__items">
+                <li class="carousel__item">
+                    <article>
+                        <div class="info top-left"><h3>Web Development</h3></div>
+                        <img class="img" src="./img/me-webdev-400.png" alt="Image of me doing web development">
+                        <div class="info bottom-left">
+                            <p>Self taught and college taught web developer</p>
+                        </div>
+                    </article>
+                </li>
+                <li class="carousel__item">
+                    <article>
+                        <div class="info top-left"><h2>Electronics</h2></div>
+                        <img id="img" src="./img/me-electronics-400.png" alt="Image of me doing electronics">
+                        <div class="info bottom-left">
+                            <p>Taught electronics throught the military</p>
+                        </div>
+                    </article>
+                </li>
+                <li class="carousel__item">
+                    <article>
+                        <div class="info bottom-left"><h2>Aviation</h2></div>
+                        <img id="img" src="./img/me-aviation-400.png" alt="Image of me doing aviation">
+                        <div class="info bottom-left">
+                        <p>Learned to fly on the job in simulation. Continued for fun</p>
+                        </div>
+                    </article>
+                </li>
+                <li class="carousel__item">
+                    <article>
+                        <div class="info top-left"><h2>Hacking</h2></div>
+                        <img id="img" src="./img/me-hack-400.png" alt="Image of me doing hacking">
+                        <div class="info bottom-left">
+                            <p>Learning to hack right now, not my favorite thing but useful for security.</p>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        <div class="carousel__prev">
+            <label for="carousel-1"></label>
+            <label for="carousel-2"></label>
+            <label for="carousel-3"></label>
+            <label for="carousel-4"></label>
         </div>
-
-        <!-- .slider-dot-control -->
-      </div>
-
+        <div class="carousel__next">
+            <label for="carousel-1"></label>
+            <label for="carousel-2"></label>
+            <label for="carousel-3"></label>
+            <label for="carousel-4"></label>
+        </div>
+        <div class="carousel__nav">
+            <label for="carousel-1"></label>
+            <label for="carousel-2"></label>
+            <label for="carousel-3"></label>
+            <label for="carousel-4"></label>
+        </div>
+        </div>
+    </div>
+    <br />
 
 
 
