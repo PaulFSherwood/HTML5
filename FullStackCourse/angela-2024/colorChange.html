@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Color Switcher</title>
+<style>
+
+/* Styling for the content */
+.content {
+    color: black; /* Default text color */
+    transition: color 0.3s; /* Smooth transition for color change */
+}
+
+/* Hide radio buttons */
+input[type="radio"] {
+    display: none;
+}
+
+/* Style labels to look like buttons */
+label {
+    cursor: pointer;
+    display: inline-block;
+    background-color: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Change text color based on selected radio button */
+#colorRed:checked ~ .content {
+    color: red;
+}
+#colorBlue:checked ~ .content {
+    color: blue;
+}
+#colorGreen:checked ~ .content {
+    color: green;
+}
+</style>
+
+</head>
+    <body>
+        <div class="button">
+            <input type="radio" id="colorRed" name="color" hidden>
+            <label for="colorRed">Red</label>
+            
+            <input type="radio" id="colorBlue" name="color" hidden>
+            <label for="colorBlue">Blue</label>
+            
+            <input type="radio" id="colorGreen" name="color" hidden>
+            <label for="colorGreen">Green</label>
+
+            <div class="content">
+                This text will change color based on the selected button.
+            </div>
+        </div>
+    </body>
+</html>
