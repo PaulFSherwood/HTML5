@@ -7,6 +7,29 @@
     /* Write your code here */
     /* Each square should be 100px by 100px */
     /* My colours for white: #f0d9b5, black: #b58863 */
+    :root {
+      --white-color: #f0d9b5;
+      --black-color: #b58863;
+      --board-size: 400px;
+      --set-size: calc(var(--board-size) / 8);
+    }
+    .container {
+      display: grid;
+      /* 8x8 grid */
+      width: var(--board-size);
+      grid-template-rows: repeat(8, 1fr);
+      grid-template-columns: repeat(8, 1fr);
+    }
+    .white {
+      height: var(--set-size);
+      width: var(--set-size);
+      background-color: var(--white-color);
+    }
+    .black {
+      height: var(--set-size);
+      width: var(--set-size);
+      background-color: var(--black-color);
+    }
   </style>
 </head>
 
