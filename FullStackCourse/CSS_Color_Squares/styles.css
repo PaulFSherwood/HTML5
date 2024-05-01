@@ -1,0 +1,40 @@
+.box {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 5px;
+  }
+  .red {
+    background-color: red;
+  }
+  .blue {
+    background-color: blue;
+  }
+  .orange {
+    background-color: orange;
+  }
+  .green {
+    background-color: green;
+  }
+  .yellow {
+    background-color: yellow;
+  }
+  
+  .redText {
+    color: red;
+  }
+  .blueText {
+    color: blue;
+  }
+  .orangeText {
+    color: orange;
+  }
+  .greenText {
+    color: green;
+  }
+  .yellowText {
+    color: yellow;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
