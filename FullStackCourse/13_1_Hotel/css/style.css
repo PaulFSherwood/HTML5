@@ -1,0 +1,14 @@
+#jumbotron .container-fluid {
+  height: 100%;
+  min-height: 500px;  /* Adjust based on your preference */
+}
+
+#jumbotron .position-absolute {
+  width: 100%;  /* Ensure the text container spans the entire width of the image */
+}
+
+.text-block {
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+  padding: 10px; /* spacing around text */
+}
+
