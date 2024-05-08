@@ -1,0 +1,70 @@
+body {
+    background-color: pink;
+    color: #3f3f3f;
+    font-family: 'Bakerville';
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 1%;
+}
+.center-text {
+    text-align: center;
+    justify-content: center;
+}
+.result {
+    color: red;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.resultPercentage {
+    color: red;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+.heartColor {
+    color: red;
+}
+.namesTextOutput {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+}
+.prettyLoveButton {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+.prettyLoveButton:hover {
+    background-color: #ff4d4d;
+}
+.userName, .partnerName {
+    font-size: 3rem;
+    color: red;
+}
+.resultText {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+}
