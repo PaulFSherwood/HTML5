@@ -11,7 +11,6 @@ for (let i = 1; i <= 100; i++) {
     }
 }
 
-
 function whosPaying(names) {
     
     /******Don't change the code above*******/
@@ -21,4 +20,19 @@ function whosPaying(names) {
         
         return bacon + " is going to buy lunch today!";
     /******Don't change the code below*******/    
+}
+
+function numberOfBottles(number) {
+    while (number >= 0) {
+        if (number === 0) {
+            console.log("No more bottles of beer on the wall");
+        }
+        if (number === 1) {
+            console.log("1 bottle of beer on the wall");
+        }
+        if (number >= 2) {
+            console.log(number + " bottles of beer on the wall.");
+        }
+        number++;
     }
+}
