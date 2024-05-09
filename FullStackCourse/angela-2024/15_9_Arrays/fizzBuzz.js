@@ -36,3 +36,18 @@ function numberOfBottles(number) {
         number++;
     }
 }
+
+function fibonacciGenerator(n) {
+    let fib = [];
+    // counting up from 0 to n add the last number
+    for (let i = 0; i < n; i++) {
+        if (i === 0) {
+            fib.push(i);
+        } else if (i === 1) {
+            fib.push(i);
+        } else {
+            fib.push(fib[i-2] + fib[i-1]);
+        }
+    }
+    return fib;    
+}
