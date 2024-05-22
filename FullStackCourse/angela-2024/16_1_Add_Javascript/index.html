@@ -15,45 +15,49 @@
 <body>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const table = document.querySelector('.table');
-            const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            const dailyTotals = new Array(7).fill(0); // Array to hold total costs per day
-            const today = new Date();
-            const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); // Calculate the start of the week (Sunday)
-        
-            // Parse and aggregate table data
-            for (let i = 1; i < table.rows.length; i++) {
-                const rowDate = new Date(table.rows[i].cells[4].innerText);
-                const cost = parseInt(table.rows[i].cells[3].innerText.replace(/[$,]/g, '')); // Remove any formatting
-                const dayIndex = (rowDate - startOfWeek) / (1000 * 60 * 60 * 24); // Calculate day of week index
-                if (dayIndex >= 0 && dayIndex < 7) { // Only count days within the current week
-                    dailyTotals[dayIndex] += cost;
+    const table = document.querySelector('.table');
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const dailyTotals = new Array(7).fill(0); // Array to hold total costs per day
+
+    // Iterate through each row in the table
+    for (let i = 1; i < table.rows.length; i++) {
+        const dateString = table.rows[i].cells[4].innerText;
+        const rowDate = new Date(dateString);
+        const dayOfWeek = rowDate.getDay(); // This returns 0 for Sunday, 1 for Monday, etc.
+        const cost = parseInt(table.rows[i].cells[3].innerText.replace(/[$,]/g, ''), 10); // Remove any formatting and convert to integer
+
+        dailyTotals[dayOfWeek] += cost; // Add cost to the appropriate day index
+    }
+
+    console.log("Data for chart:", dailyTotals);
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: daysOfWeek,
+            datasets: [{
+                label: 'Total Cost of Transactions (This Week)',
+                data: dailyTotals,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: daysOfWeek,
-                    datasets: [{
-                        label: 'Total Cost of Transactions (This Week)',
-                        data: dailyTotals,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        });
+        }
+    });
+});
+
+
         </script>
+        
+        
         
         
         
@@ -120,59 +124,52 @@
                     <td>123 Elm St</td>
                     <td>Condo</td>
                     <td>$200,000</td>
-                    <td>2023-05-14</td>
+                    <td>2024-05-15</td>
                 </tr>
                 <tr>
                     <td>002</td>
                     <td>456 Maple Ave</td>
                     <td>House</td>
                     <td>$300,000</td>
-                    <td>2023-05-15</td>
+                    <td>2024-05-16</td>
                 </tr>
                 <tr>
                     <td>003</td>
                     <td>789 Oak Blvd</td>
                     <td>Land</td>
                     <td>$150,000</td>
-                    <td>2023-05-16</td>
+                    <td>2024-05-17</td>
                 </tr>
-                <!-- Add more rows as needed -->
                 <tr>
                     <td>004</td>
                     <td>101 Pine Rd</td>
                     <td>Apartment</td>
                     <td>$250,000</td>
-                    <td>2023-05-17</td>
+                    <td>2024-05-18</td>
                 </tr>
                 <tr>
                     <td>005</td>
                     <td>202 Birch St</td>
                     <td>House</td>
                     <td>$320,000</td>
-                    <td>2023-05-18</td>
+                    <td>2024-05-19</td>
                 </tr>
                 <tr>
                     <td>006</td>
                     <td>303 Cedar Ln</td>
                     <td>Townhouse</td>
                     <td>$210,000</td>
-                    <td>2023-05-19</td>
+                    <td>2024-05-20</td>
                 </tr>
                 <tr>
                     <td>007</td>
                     <td>404 Spruce Pl</td>
                     <td>Condo</td>
                     <td>$190,000</td>
-                    <td>2023-05-20</td>
+                    <td>2024-05-21</td>
                 </tr>
-
             </tbody>
         </table>
-
-        
-
       </main>
-
-
 </body>
 </html>
