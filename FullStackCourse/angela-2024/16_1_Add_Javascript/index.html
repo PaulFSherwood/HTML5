@@ -14,52 +14,48 @@
 
 <body>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    const table = document.querySelector('.table');
-    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const dailyTotals = new Array(7).fill(0); // Array to hold total costs per day
+    document.addEventListener('DOMContentLoaded', function () {
+        const table = document.querySelector('.table');
+        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const dailyTotals = new Array(7).fill(0); // Array to hold total costs per day
 
-    // Iterate through each row in the table
-    for (let i = 1; i < table.rows.length; i++) {
-        const dateString = table.rows[i].cells[4].innerText;
-        const rowDate = new Date(dateString);
-        const dayOfWeek = rowDate.getDay(); // This returns 0 for Sunday, 1 for Monday, etc.
-        const cost = parseInt(table.rows[i].cells[3].innerText.replace(/[$,]/g, ''), 10); // Remove any formatting and convert to integer
+        // Iterate through each row in the table
+        for (let i = 1; i < table.rows.length; i++) {
+            const dateString = table.rows[i].cells[4].innerText;
+            const rowDate = new Date(dateString);
+            const dayOfWeek = rowDate.getDay(); // This returns 0 for Sunday, 1 for Monday, etc.
+            const cost = parseInt(table.rows[i].cells[3].innerText.replace(/[$,]/g, ''), 10); // Remove any formatting and convert to integer
 
-        dailyTotals[dayOfWeek] += cost; // Add cost to the appropriate day index
-    }
+            dailyTotals[dayOfWeek] += cost; // Add cost to the appropriate day index
+        }
 
-    console.log("Data for chart:", dailyTotals);
+        console.log("Data for chart:", dailyTotals);
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: daysOfWeek,
-            datasets: [{
-                label: 'Total Cost of Transactions (This Week)',
-                data: dailyTotals,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: daysOfWeek,
+                datasets: [{
+                    label: 'Total Cost of Transactions (This Week)',
+                    data: dailyTotals,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
+        });
     });
-});
+    </script>
 
 
-        </script>
-        
-        
-        
-        
         
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
