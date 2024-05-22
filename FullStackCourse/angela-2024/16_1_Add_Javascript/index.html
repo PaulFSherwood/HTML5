@@ -15,29 +15,47 @@
 <body>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-          var ctx = document.getElementById('myChart').getContext('2d');
-          var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-              datasets: [{
-                label: 'Demo Data',
-                data: [10, 20, 30, 40, 50, 60, 70],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
+            const table = document.querySelector('.table');
+            const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const dailyTotals = new Array(7).fill(0); // Array to hold total costs per day
+            const today = new Date();
+            const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); // Calculate the start of the week (Sunday)
+        
+            // Parse and aggregate table data
+            for (let i = 1; i < table.rows.length; i++) {
+                const rowDate = new Date(table.rows[i].cells[4].innerText);
+                const cost = parseInt(table.rows[i].cells[3].innerText.replace(/[$,]/g, '')); // Remove any formatting
+                const dayIndex = (rowDate - startOfWeek) / (1000 * 60 * 60 * 24); // Calculate day of week index
+                if (dayIndex >= 0 && dayIndex < 7) { // Only count days within the current week
+                    dailyTotals[dayIndex] += cost;
                 }
-              }
             }
-          });
+        
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: daysOfWeek,
+                    datasets: [{
+                        label: 'Total Cost of Transactions (This Week)',
+                        data: dailyTotals,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         });
         </script>
+        
+        
         
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
@@ -85,133 +103,74 @@
         <canvas class="my-4 w-100" id="myChart" width="1532" height="647" style="display: block; box-sizing: border-box; height: 647px; width: 1532px;"></canvas>
   
         <h2>Section title</h2>
-        <div class="table-responsive small">
-          <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-              </tr>
+                <tr>
+                    <th scope="col">Purchase #</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Asset Type</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Date of Purchase</th>
+                </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-              </tr>
-              <tr>
-                <td>1,002</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>information</td>
-                <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,004</td>
-                <td>text</td>
-                <td>random</td>
-                <td>layout</td>
-                <td>dashboard</td>
-              </tr>
-              <tr>
-                <td>1,005</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>placeholder</td>
-              </tr>
-              <tr>
-                <td>1,006</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,007</td>
-                <td>placeholder</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>irrelevant</td>
-              </tr>
-              <tr>
-                <td>1,008</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-              </tr>
-              <tr>
-                <td>1,009</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-              </tr>
-              <tr>
-                <td>1,010</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-              </tr>
-              <tr>
-                <td>1,011</td>
-                <td>information</td>
-                <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,012</td>
-                <td>text</td>
-                <td>placeholder</td>
-                <td>layout</td>
-                <td>dashboard</td>
-              </tr>
-              <tr>
-                <td>1,013</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>visual</td>
-              </tr>
-              <tr>
-                <td>1,014</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,015</td>
-                <td>random</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>text</td>
-              </tr>
+                <!-- Sample Data -->
+                <tr>
+                    <td>001</td>
+                    <td>123 Elm St</td>
+                    <td>Condo</td>
+                    <td>$200,000</td>
+                    <td>2023-05-14</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>456 Maple Ave</td>
+                    <td>House</td>
+                    <td>$300,000</td>
+                    <td>2023-05-15</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>789 Oak Blvd</td>
+                    <td>Land</td>
+                    <td>$150,000</td>
+                    <td>2023-05-16</td>
+                </tr>
+                <!-- Add more rows as needed -->
+                <tr>
+                    <td>004</td>
+                    <td>101 Pine Rd</td>
+                    <td>Apartment</td>
+                    <td>$250,000</td>
+                    <td>2023-05-17</td>
+                </tr>
+                <tr>
+                    <td>005</td>
+                    <td>202 Birch St</td>
+                    <td>House</td>
+                    <td>$320,000</td>
+                    <td>2023-05-18</td>
+                </tr>
+                <tr>
+                    <td>006</td>
+                    <td>303 Cedar Ln</td>
+                    <td>Townhouse</td>
+                    <td>$210,000</td>
+                    <td>2023-05-19</td>
+                </tr>
+                <tr>
+                    <td>007</td>
+                    <td>404 Spruce Pl</td>
+                    <td>Condo</td>
+                    <td>$190,000</td>
+                    <td>2023-05-20</td>
+                </tr>
+
             </tbody>
-          </table>
-        </div>
+        </table>
+
+        
+
       </main>
 
 
