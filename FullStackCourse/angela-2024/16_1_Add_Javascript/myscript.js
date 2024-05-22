@@ -28,12 +28,12 @@ window.addEventListener("load", function(event) {
     console.log('Hello {window.onload}');
 
 
-    setTimeout(function() {
+    this.setTimeout(function() {
         document.querySelector('H1').innerHTML = "done-ish";
     }, 1500);
 
     // After 3 seconds, change the H1 text
-    setTimeout(function() {
+    this.setTimeout(function() {
         document.querySelector('H1').innerHTML = "3 Seconds done.";
     }, 3000); // 3000 milliseconds = 3 seconds
 
