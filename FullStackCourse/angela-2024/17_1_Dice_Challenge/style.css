@@ -1,0 +1,12 @@
+.red-fill {
+    fill: red !important;
+}
+.red-icon {
+    color: red;
+}
+.container {
+    background-color: aquamarine;
+    text-align: center;
+    justify-content: center;
+    padding: 10%;
+}
