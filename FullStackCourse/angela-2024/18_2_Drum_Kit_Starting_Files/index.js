@@ -39,13 +39,13 @@ function playSound(index) {
             new Audio("sounds/tom-4.mp3").play();
             break;
         case 4:
-            new Audio("sounds/kick-bass.mp3").play();
-            break;
-        case 5:
             new Audio("sounds/snare.mp3").play();
             break;
-        case 6:
+        case 5:
             new Audio("sounds/crash.mp3").play();
+            break;
+        case 6:
+            new Audio("sounds/kick-bass.mp3").play();
             break;
         default:
             break;
@@ -75,3 +75,20 @@ document.addEventListener("keyup", function(event) {
         console.log("Key `" + key + "` was pressed");
     }
 });
+
+// Notes from 137 / 18_4
+function add(num1, num2) {
+    return num1 + num2;
+}
+function multiply(num1, num2) {
+    return num1 * num2;
+}
+function subtract(num1, num2) {
+    return num1 - num2;
+}
+function divide(num1, num2) {
+    return num1 / num2;
+}
+function calculator(num1, num2, operator){
+    return operator(num1, num2);
+}
