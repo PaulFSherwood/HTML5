@@ -20,3 +20,25 @@ $("button").html("<em>Hey</em>");
 console.log($("img").attr("src"));
 $("a").attr("href", "https://www.yahoo.com");
 $("img").attr("width", "32");
+
+$("h1").click(function() {
+    $("h1").css("color", "purple");
+});
+
+$("button").click(function() {
+    $("h1").css("color", "purple");
+});
+
+$("input").keypress(function(event) {
+    console.log(event.key);
+    $("h1").text(event.key);
+});
+
+$("h1").on("mouseover", function() {
+    if ($(this).css("color") === "rgb(128, 0, 128)") { // check if the color is purple
+        $(this).css("color", "yellow");
+    } else {
+        $(this).css("color", "purple");
+    }
+});
+
