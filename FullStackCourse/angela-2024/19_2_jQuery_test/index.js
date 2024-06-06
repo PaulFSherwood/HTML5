@@ -2,7 +2,7 @@ $("h1").css("color", "red");
 $("button");
 
 $("h1").addClass("big-title margin-50");
-$("h1").removeClass("big-title");
+// $("h1").removeClass("big-title");
 console.log($("h1").hasClass("margin-50"));
 
 // toggle() check the visibility of selected elements
@@ -36,12 +36,17 @@ $("input").keypress(function(event) {
 
 $("h1").on("mouseover", function() {
     if ($(this).css("color") === "rgb(128, 0, 128)") { // check if the color is purple
-        $(this).css("color", "yellow");
+        $(this).css("color", "#df61b5");
     } else {
         $(this).css("color", "purple");
     }
 });
 
 $("button").on("click", function() {
-    $("h1").fadeToggle();
+    // $("h1").fadeToggle("slow");
+    // $("h1").slideUp();
+    // $("h1").slideToggle();
+    // $("h1").animate({opacity: 0.5});
+    $("h1").slideUp().slideDown().animate({opacity: 0.5});
 });
+
