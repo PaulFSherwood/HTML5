@@ -75,13 +75,13 @@ function pulseCube(color) {
         animationFillMode: 'forwards'
     });
 
+    playSound(color);
+    
     // Optional: Clear the animation after it's complete to clean up
     setTimeout(() => {
         element.css('animationName', 'none');
     }, 1000);  // Match the duration of the animation
 }
-
-
 
 function pulseAllCubes() {
     let delay = 1300;  // Base delay of 1 second
@@ -93,6 +93,26 @@ function pulseAllCubes() {
         }, delay * i);  // Delay increases with each iteration
     }
 
+}
+
+// sound function
+function playSound(color) {
+    switch(color) {
+        case 'green':
+            new Audio("sounds/green.mp3").play();
+            break;
+        case 'red':
+            new Audio("sounds/red.mp3").play();
+            break;
+        case 'yellow':
+            new Audio("sounds/yellow.mp3").play();
+            break;
+        case 'blue':
+            new Audio("sounds/blue.mp3").play();
+            break;
+        default:
+            break;
+    }
 }
 
 function runGame() {
