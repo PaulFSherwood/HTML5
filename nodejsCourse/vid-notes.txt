@@ -3,22 +3,22 @@ https://www.youtube.com/watch?v=Oe421EPjeBE
 Current time: 1:04:12
 
 ⭐️ Course Contents ⭐️
-⌨️ (00:00​) Introduction 
-⌨️ (01:41​) What Is Node 
-⌨️ (02:56​) Course Requirements 
-⌨️ (04:16​) Course Structure 
-⌨️ (04:59​) Browser Vs Server 
-⌨️ (07:50​) Install Node 
-⌨️ (11:08​) Repl 
-⌨️ (13:27​) Cli 
-⌨️ (19:07​) Source Code 
-⌨️ (20:27​) Globals 
-⌨️ (29:34​) Modules Setup 
-⌨️ (32:46​) First Module 
-⌨️ (45:32​) Alternative Syntax 
-⌨️ (49:50​) Mind Grenade 
-⌨️ (53:47​) Built-In Module Intro 
-⌨️ (56:31​) Os Module 
+🎹 (00:00​) Introduction 
+🎹 (01:41​) What Is Node 
+🎹 (02:56​) Course Requirements 
+🎹 (04:16​) Course Structure 
+🎹 (04:59​) Browser Vs Server 
+🎹 (07:50​) Install Node 
+🎹 (11:08​) Repl 
+🎹 (13:27​) Cli 
+🎹 (19:07​) Source Code 
+🎹 (20:27​) Globals 
+🎹 (29:34​) Modules Setup 
+🎹 (32:46​) First Module 
+🎹 (45:32​) Alternative Syntax 
+🎹 (49:50​) Mind Grenade 
+🎹 (53:47​) Built-In Module Intro 
+🎹 (56:31​) Os Module 
 ⌨️ (1:04:13​) Path Module
 ⌨️ (1:10:06​) Fs Module (Sync)
 ⌨️ (1:18:28​) Fs Module (Async)
