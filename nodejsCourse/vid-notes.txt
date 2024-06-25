@@ -1,6 +1,6 @@
 Node.js and Express.js - Full Course
 https://www.youtube.com/watch?v=Oe421EPjeBE
-Current time: 1:04:12
+Current time: 1:10:32
 
 ⭐️ Course Contents ⭐️
 🎹 (00:00​) Introduction 
