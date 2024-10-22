@@ -8,6 +8,7 @@ const sizes = {
 
 const speedDown = 300;
 
+// HTML access variables
 const gameStartDiv = document.querySelector('#gameStartDiv');
 const gameStartBtn = document.querySelector('#gameStartBtn');
 const gameEndDiv = document.querySelector('#gameEndDiv');
@@ -31,7 +32,7 @@ class GameScene extends Phaser.Scene {
     this.bgMusic;
     this.emitter;
   }
-
+// Asset loading
   preload(){
     this.load.image('bg', '/assets/bg.png');
     this.load.image('basket', '/assets/basket.png');
@@ -40,15 +41,18 @@ class GameScene extends Phaser.Scene {
     this.load.audio('coin', '/assets/coin.mp3');
     this.load.audio('bgMusic', '/assets/bgMusic.mp3');
   }
+// Asset setup
   create(){
 
+    // Scene status
     this.scene.pause("scene-game");
-    
+    // Sounds Setup
     this.coinMusic = this.sound.add('coin');
     this.bgMusic = this.sound.add('bgMusic');
     this.bgMusic.play();
     // this.bgMusic.stop();
 
+    // Player Setup
     this.add.image(0, 0, 'bg').setOrigin(0, 0);
     this.player = this.physics.add
       .image(0, sizes.height-100, 'basket')
@@ -68,10 +72,12 @@ class GameScene extends Phaser.Scene {
 
     this.cursor = this.input.keyboard.createCursorKeys();
 
+    // Score Display
     this.textScore = this.add.text(sizes.width - 120, 10, "Score: 0", {
       font: "20px Arial",
       fill: "#000000"
     });
+    // Time Display
     this.textTime = this.add.text(10, 10, "Remaining Time: 00", {
       font: "25px Arial",
       fill: "#000000"
@@ -79,6 +85,7 @@ class GameScene extends Phaser.Scene {
 
     this.timedEvent = this.time.delayedCall(30000, this.gameOver, [], this);
 
+    // Particle affects
     this.emitter=this.add.particles(0, 0, 'money', {
       speed: 100,
       gravityY:speedDown - 200,
@@ -88,6 +95,7 @@ class GameScene extends Phaser.Scene {
     })
     this.emitter.startFollow(this.player, this.player.width / 2, this.player.height / 2, true);
   }
+  // Status changes when the screen is updated
   update(){
     this.remainingTime = this.timedEvent.getRemainingSeconds();
     this.textTime.setText(`Remaining Time: ${Math.round(this.remainingTime).toString().padStart(2, '0')}`);
@@ -105,9 +113,11 @@ class GameScene extends Phaser.Scene {
       this.player.setVelocityX(0);
     }
   }
+  // Fruit X position helper function
   getRandomX() {
     return Math.floor(Math.random() * 480);
   }
+  // When Player and target(fruit) collide do ...
   targetHit() {
     this.coinMusic.play();
     this.emitter.start();
@@ -116,7 +126,7 @@ class GameScene extends Phaser.Scene {
     this.points += 1;
     this.textScore.setText(`Score: ${this.points}`);
   }
-
+  // Action to perform when the game has been completed
   gameOver() {
     this.sys.game.destroy(true);
 
@@ -131,6 +141,7 @@ class GameScene extends Phaser.Scene {
   }
 };
 
+// Phaser game configuration (Default settings)
 const config = {
   type: Phaser.WEBGL,
   width: sizes.width,
@@ -146,8 +157,10 @@ const config = {
   scene:[GameScene]
 }
 
+// Phaser Game object
 const game = new Phaser.Game(config);
 
+// Button action listener
 gameStartBtn.addEventListener("click", ()=> {
   gameStartDiv.style.display = "none"
   game.scene.resume("scene-game");
