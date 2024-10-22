@@ -77,6 +77,7 @@ class GameScene extends Phaser.Scene {
       font: "20px Arial",
       fill: "#000000"
     });
+
     // Time Display
     this.textTime = this.add.text(10, 10, "Remaining Time: 00", {
       font: "25px Arial",
@@ -95,6 +96,7 @@ class GameScene extends Phaser.Scene {
     })
     this.emitter.startFollow(this.player, this.player.width / 2, this.player.height / 2, true);
   }
+
   // Status changes when the screen is updated
   update(){
     this.remainingTime = this.timedEvent.getRemainingSeconds();
@@ -103,6 +105,8 @@ class GameScene extends Phaser.Scene {
       this.target.setY(0);
       this.target.setX(this.getRandomX());
     }
+
+    // Player paddle control
     const {left, right} = this.cursor;
 
     if (left.isDown) {
@@ -113,10 +117,12 @@ class GameScene extends Phaser.Scene {
       this.player.setVelocityX(0);
     }
   }
+
   // Fruit X position helper function
   getRandomX() {
     return Math.floor(Math.random() * 480);
   }
+
   // When Player and target(fruit) collide do ...
   targetHit() {
     this.coinMusic.play();
