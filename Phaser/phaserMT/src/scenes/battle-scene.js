@@ -101,6 +101,13 @@ export class BattleScene extends Phaser.Scene {
             this.add.text(55, 70, BATTLE_MENU_OPTIONS.ITEM, battleUiTextStyle),
             this.add.text(240, 70, BATTLE_MENU_OPTIONS.FLEE, battleUiTextStyle),
         ]);
+
+        this.add.container(0, 448, [
+            this.add.text(55, 22, 'slash', battleUiTextStyle),
+            this.add.text(240, 22, 'growl', battleUiTextStyle),
+            this.add.text(55, 70, '-', battleUiTextStyle),
+            this.add.text(240, 70, '-', battleUiTextStyle),
+        ]);
     }
     #createHealthBar(x, y) {
         const scaleY = 0.7;
