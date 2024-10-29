@@ -1,0 +1,54 @@
+phaserGAME
+|
+|-- assets/				# Folder for images, audio, and other game assets
+|   |-- images/
+|   |-- audio/
+|   |-- spritesheets/
+|
+|-- src/				# Main source folder for all scripts
+|   |-- scenes/				# Folder for the game scenes (Title, Gameplay, etc.)
+|   |   |-- TitleScene.js
+|   |   |-- GameplayScene.js
+|   |   |-- GameOverScene.js
+|   |
+|   |-- characters/			# Folder for player and enemy Classes
+|   |   |-- Player.js
+|   |   |-- Enemy.js
+|   |
+|   |-- ui/				# Folder for UI components
+|   |   |-- HUD.js
+|   |
+|   |-- systems/			# Core game systems like physics, combat, and AI
+|   |   |-- CombatSystem.js
+|   |   |-- EnemySpwner.js
+|   |   |-- CollisionSystem.js
+|   |
+|   |-- utils/				# Utility files (help functions)
+|   |   |-- HelperFunctions.js
+|   |
+|   |-- main.js				# Entry point, Phaser configuration, and game launch
+|
+|-- index.html				# HTML file to load the game
+|-- style.css				# Styles if need for the game
+|-- README.md				# Project Documentation
+
+
+# assets/ : Stores all image, audio and spritesheet assets.  Organizing by type (e.g., images, audio) helps quickly find assets and reduce clutter.
+# src/scenes/ : 
+	# TitleScene.js : Handles the title screen, character selectin, and basic settings.  This is the entry scene when the game starts
+	# GameOverScene.js : Handels game-over screen logic and display, with options to restart or return to the title screen.
+# src/characters/ :
+	# Player.js : Contains player character movement, animations, attacks and health.  Player-specific behaviros are defined here.
+	# Enemy.js : Similar to Player.js, but for enemy charaters.  Can handle movement patters, attacks and death animations.
+# src/ui/ :
+	# HUD.js : Manages UI elements like health bars, score counters, and any other in-game status indicators.
+# src/systems/ :
+	# CombatSystemjs : Handles attack logic, hit detection, damage calculation.  This keeps the core combat logic modular
+	# EnemnySpawner.js : Controls when and where enemies spwn, allowing for waves or timed spawn as players progress
+	# CollisionSystem.js : Manages collision detection and response between the player, enemies, and environment.
+# src/utils/ :
+	# HelperFunctions.js : Gneral utility functions that can be used across different files, such as random number generators or helper functions for loading assets.
+# src/main.js: This is the main entry point of your Phaser game.  It sets up the Phaser configuration (vanvas size, physics settings, etc.) and launches the initial scene (e.g., TitleScene).
+
+#######
+By structuring it this way, each folder and file has a specific responsibity, making it easier to manage and debug individual components without getting overwhelmed by a large script file.  You can use this approach to make the code modular and organized for easy navigation and future maintenance.
