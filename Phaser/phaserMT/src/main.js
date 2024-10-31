@@ -21,3 +21,5 @@ const game = new Phaser.Game({
 game.scene.add(SCENE_KEYS.PRELOAD_SCENE, PreloadScene);
 game.scene.add(SCENE_KEYS.BATTLE_SCENE, BattleScene);
 game.scene.start(SCENE_KEYS.PRELOAD_SCENE);
+
+// REVIEW: Look throught the code to verify how it is running.

@@ -1,24 +1,15 @@
-import {
-    BATTLE_ASSET_KEYS,
-    BATTLE_BACKGROUND_ASSET_KEYS,
-    HEALTH_BAR_ASSET_KEYS, MONSTER_ASSET_KEYS
-} from "../assets/asset-keys";
+import { BATTLE_ASSET_KEYS, BATTLE_BACKGROUND_ASSET_KEYS, HEALTH_BAR_ASSET_KEYS, MONSTER_ASSET_KEYS } from "../assets/asset-keys";
+import { BattleMenu } from "../battle/ui/battle-menu";
+import { DIRECTION } from "../common/direction";
 import Phaser from "../lib/phaser";
 import { SCENE_KEYS } from "./scene-keys";
 
-const BATTLE_MENU_OPTIONS = Object.freeze( {
-    FIGHT: 'FIGHT',
-    SWITCH: 'SWITCH',
-    ITEM: 'ITEM',
-    FLEE: 'FLEE',
-});
-
-const battleUiTextStyle = {
-    color: 'black',
-    fontSize: '30px',
-}
-
 export class BattleScene extends Phaser.Scene {
+    /** @type {BattleMenu} */
+    #battleMenu;
+    /** @type {Phaser.Types.Input.Keyboard.CursorKeys} */
+    #cursorKeys;
+
     constructor() {
         super({
             key: SCENE_KEYS.BATTLE_SCENE,
@@ -35,10 +26,7 @@ export class BattleScene extends Phaser.Scene {
         this.add.image(255, 316, MONSTER_ASSET_KEYS.IGUANIGNITE, 0).setFlipX(true);
 
         // Render out the player health bar
-        const playerMonsterName = this.add.text(
-            30,
-            20,
-            MONSTER_ASSET_KEYS.IGUANIGNITE,
+        const playerMonsterName = this.add.text( 30, 20, MONSTER_ASSET_KEYS.IGUANIGNITE,
             {
                 color: '#7E3D3F',
                 fontSize: '32px',
@@ -66,10 +54,7 @@ export class BattleScene extends Phaser.Scene {
         ]);
 
         // Render out the enemy health bar
-        const enemyMonsterName = this.add.text(
-            30,
-            20,
-            MONSTER_ASSET_KEYS.CARNODUSK,
+        const enemyMonsterName = this.add.text( 30, 20, MONSTER_ASSET_KEYS.CARNODUSK,
             {
                 color: '#7E3D3F',
                 fontSize: '32px',
@@ -91,24 +76,48 @@ export class BattleScene extends Phaser.Scene {
                 fontStyle: 'italic',
             }),
         ]);
+        // Render out the main info and sub info panes
+        this.#battleMenu = new BattleMenu(this);
+        this.#battleMenu.showMainBattleMenu();
 
-        // Rende out the main info and sub info panes
-        this.#createMainInfoPane();
-        this.add.container(520, 448, [
-            this.#createMainInfoSubPane(),
-            this.add.text(55, 22, BATTLE_MENU_OPTIONS.FIGHT, battleUiTextStyle),
-            this.add.text(240, 22, BATTLE_MENU_OPTIONS.SWITCH, battleUiTextStyle),
-            this.add.text(55, 70, BATTLE_MENU_OPTIONS.ITEM, battleUiTextStyle),
-            this.add.text(240, 70, BATTLE_MENU_OPTIONS.FLEE, battleUiTextStyle),
-        ]);
-
-        this.add.container(0, 448, [
-            this.add.text(55, 22, 'slash', battleUiTextStyle),
-            this.add.text(240, 22, 'growl', battleUiTextStyle),
-            this.add.text(55, 70, '-', battleUiTextStyle),
-            this.add.text(240, 70, '-', battleUiTextStyle),
-        ]);
+        this.#cursorKeys = this.input.keyboard.createCursorKeys();
+        // this.#cursorKeys.down.
     }
+
+    update() {
+        const wasSpaceKeyPressed = Phaser.Input.Keyboard.JustDown(this.#cursorKeys.space);
+        if (wasSpaceKeyPressed) {
+            this.#battleMenu.handlePlayerInput('OK');
+            return;
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.#cursorKeys.shift)) {
+            this.#battleMenu.handlePlayerInput('CANCEL');
+            return;
+        }
+        /** @type {import('../common/direction.js').Direction} */
+        let selectedDirection = DIRECTION.NONE;
+        if (this.#cursorKeys.left.isDown) {
+            selectedDirection = DIRECTION.LEFT;
+        } else if (this.#cursorKeys.right.isDown) {
+            selectedDirection = DIRECTION.RIGHT;
+        } else if (this.#cursorKeys.up.isDown) {
+            selectedDirection = DIRECTION.UP;
+        } else if (this.#cursorKeys.down.isDown) {
+            selectedDirection = DIRECTION.DOWN;
+        } 
+        
+        if (selectedDirection !== DIRECTION.NONE) {
+            this.#battleMenu.handlePlayerInput(selectedDirection);
+        }
+    }
+
+    /**
+     * 
+     * @param {number} x the x position to place the health bar container
+     * @param {number} y the y position to place the health bar container
+     * @returns {Phaser.GameObjects.Container}
+     */
     #createHealthBar(x, y) {
         const scaleY = 0.7;
         const leftCap = this.add
@@ -126,17 +135,5 @@ export class BattleScene extends Phaser.Scene {
             .setScale(1, scaleY);
 
         return this.add.container(x, y, [leftCap, middle, rightCap]);
-    }
-
-    #createMainInfoPane() {
-        const padding = 4;
-        const rectHeight = 124;
-        this.add.rectangle(padding, this.scale.height - rectHeight - padding, this.scale.width - padding * 2, rectHeight, 0xE4080A, 0.2).setOrigin(0).setStrokeStyle(8, 0xe4434a, 1);
-    }
-
-    #createMainInfoSubPane() {
-        const rectWidth = 500;
-        const rectHeight = 124;
-        return this.add.rectangle(0, 0, rectWidth, rectHeight, 0xede4f3, 1).setOrigin(0).setStrokeStyle(8, 0x905ac2, 1);
     }
 }
