@@ -6,7 +6,7 @@ export class PreloadScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', '../assets/images/background.png');
+        this.load.image('background', './assets/images/background.png');
         console.log(this.textures.exists('background'));
         console.log("hey");
         this.load.spritesheet('player', '../assets/images/player.png' , { frameWidth: 64, frameHeight: 64 });
