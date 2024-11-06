@@ -1,57 +1,63 @@
 import Phaser from "../lib/phaser";
+import { ASSET_KEYS } from '../assets/asset-keys'
+import { SCENE_KEYS } from './scene-keys'
 
 // class PreloadScene extends Phaser.Scene {
 
-
 export class GameScene extends Phaser.Scene {
     constructor() {
-        super('GameScene');
+        super(SCENE_KEYS.GAME);
     }
 
     create() {
         // Background
-        this.add.image(400, 300, 'background');
+        this.add.image(400, 300, ASSET_KEYS.BACKGROUND).setOrigin(0.5, 0.5);
 
         // Player
-        this.player = this.physics.add.sprite(100, 450, 'player').setScale(1.5);
+        this.player = this.physics.add.sprite(100, 450, ASSET_KEYS.PLAYER).setScale(1.5);
         this.player.setCollideWorldBounds(true);
-        this.createPlayerAnimations();
+        // this.createPlayerAnimations();
 
         // Input
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.attackKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        // this.attackKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        // Enemies
-        this.enemies = this.physics.add.group();
-        this.createEnemyAnimations(); // Call this function to define enemy animations
-        this.spawnEnemy();
+        // // Enemies
+        // this.enemies = this.physics.add.group();
+        // this.createEnemyAnimations(); // Call this function to define enemy animations
+        // this.spawnEnemy();
 
-        // Collisions
-        this.physics.add.collider(this.player, this.enemies, this.handlePlayerEnemyCollision, null, this);
+        // // Collisions
+        // this.physics.add.collider(this.player, this.enemies, this.handlePlayerEnemyCollision, null, this);
     }
 
     update() {
         // Handle Player meowment
-        this.handlePlayerEnemyCollision();
+        // this.handlePlayerEnemyCollision();
 
         // Player Attack
-        if (Phaser.Input.Keyboard.JustDown(this.attackKey)) {
-            this.player.anims.play('attack', true);
-            this.sound.play('punch');
-            this.checkAttackHit();
+        // if (Phaser.Input.Keyboard.JustDown(this.attackKey)) {
+        //     this.player.anims.play('attack', true);
+        //     this.sound.play('punch');
+        //     this.checkAttackHit();
+        // }
+        // Player movement
+        if (this.cursors.left.isDown) {
+            this.player.setVelocityX(-160);
+            // this.player.anims.play('walk', true);
+        } else if (this.cursors.right.isDown) {
+            this.player.setVelocityX(160);
+            // this.player.anims.play('walk', true);
+        } else {
+            this.player.setVelocity(0);
+            // this.player.anims.play('idle', true);
+        }
+
+        // Jumping 
+        if (this.cursors.up.isDown && this.player.body.touching.down) {
+            this.player.setVelocityY(-330);
         }
     }
-    //     // Player movement
-    //     if (this.cursors.left.isDown) {
-    //         this.player.setVelocityX(-160);
-    //         this.player.anims.play('walk', true);
-    //     } else if (this.cursors.right.isDown) {
-    //         this.player.setVelocityX(160);
-    //         this.player.anims.play('walk', true);
-    //     } else {
-    //         this.player.setVelocity(0);
-    //         this.player.anims.play('idle', true);
-    //     }
 
     //     // Collision
     //     this.physics.add.collider(this.player, this.enemies, this.handlePlayerEnemyCollision, null, this);
@@ -111,24 +117,24 @@ export class GameScene extends Phaser.Scene {
         }
     }
 
-    spawnEnemy() {
-        const enemy = this.enemies.create(800, 450, 'enemy').setScale(1.5);
-        enemy.setCollideWorldBounds(true);
-        enemy.setVelocityX(-100);
-        enemy.anims.play('enemyWalk', true); // play the enemyWalk animation
-    }
+    // spawnEnemy() {
+    //     const enemy = this.enemies.create(800, 450, 'enemy').setScale(1.5);
+    //     enemy.setCollideWorldBounds(true);
+    //     enemy.setVelocityX(-100);
+    //     enemy.anims.play('enemyWalk', true); // play the enemyWalk animation
+    // }
 
     handlePlayerEnemyCollision(player, enemy) {
         // Handle what happens when the player collides with the enemy
         console.log("Player collided with enemy");
     }
 
-    checkAttackHit() {
-        this.enemies.getChildren().forEach(enemy => {
-            if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), enemy.getBounds())){
-                // Handle enemy hit
-                enemy.destroy();
-            }
-        });
-    }
+    // checkAttackHit() {
+    //     this.enemies.getChildren().forEach(enemy => {
+    //         if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), enemy.getBounds())){
+    //             // Handle enemy hit
+    //             enemy.destroy();
+    //         }
+    //     });
+    // }
 }
