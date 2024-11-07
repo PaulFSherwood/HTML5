@@ -1,14 +1,14 @@
+import { ASSET_KEYS } from "../assets/asset-keys.js";
 import Phaser from "../lib/phaser";
-import { ASSET_KEYS } from "../assets/asset-keys.js"
 import { SCENE_KEYS } from "./scene-keys.js";
 
 export class PreloadScene extends Phaser.Scene {
     constructor() {
         super({
-            key: SCENE_KEYS.PRELOAD,
+            key: SCENE_KEYS.PRELOAD_SCENE,
             // active: true,
         });
-        console.log(SCENE_KEYS.PRELOAD);
+        console.log(SCENE_KEYS.PRELOAD_SCENE);
     }
     
     // init() {
