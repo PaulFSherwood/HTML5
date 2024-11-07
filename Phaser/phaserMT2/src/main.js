@@ -13,6 +13,13 @@ const game = new Phaser.Game({
     width: 800,
     height: 600,
   },
+  physics: {
+    default: 'arcade',
+    arcade: {
+      // gravity: { y: 0 },
+      debug: true,
+    },
+  },
   backgroundColor: '#000000',
 
   // scene: [PreloadScene]
